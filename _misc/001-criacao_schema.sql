@@ -1,0 +1,1 @@
+CREATE SCHEMA `cadastro_cliente` ;
