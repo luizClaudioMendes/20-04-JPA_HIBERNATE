@@ -13,10 +13,10 @@ public class SalvandoPrimeiroObjeto {
 		EntityManager entitymanager = entityManagerFactory.createEntityManager();
 		
 		Cliente cliente = new Cliente();
-		cliente.setNome("chaves junior");
-		cliente.setIdade(23);
-		cliente.setProfissao("estudante");
-		cliente.setSexo("M");
+		cliente.setNome("Maria Rita");
+		cliente.setIdade(20);
+		cliente.setProfissao("médica");
+		cliente.setSexo("F");
 		
 		entitymanager.getTransaction().begin();//para alteraçoes no banco de dados é necessario abrir e commitar a transacao
 		entitymanager.persist(cliente);
