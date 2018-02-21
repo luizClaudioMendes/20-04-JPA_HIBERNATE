@@ -23,28 +23,25 @@ public class FabricanteDAO implements Serializable {
 	}
 
 	public List<Fabricante> buscarTodos() {
-		return null;
-		//NAO IMPLEMENTADO AINDA NO CURSO
-//		return em.createQuery("from Fabricante", Fabricante.class).getResultList();
+		//JPQL
+		return em.createQuery("from Fabricante", Fabricante.class).getResultList();
 	}
 
 	@Transactional
 	public void excluir(Fabricante fabricante) throws NegocioException {
-		//NAO IMPLEMENTADO AINDA NO CURSO
-//		try {
-//			Fabricante fabricanteTemp = this.buscarPeloCodigo(fabricante.getCodigo());
-//		
-//			em.remove(fabricanteTemp);
-//			em.flush();
-//		} catch (PersistenceException e) {
-//			throw new NegocioException("Fabricante não pode ser excluído.");
-//		}
+		try {
+			//o objeto precisa estar gerenciado no entitymanager
+			Fabricante fabricanteTemp = this.buscarPeloCodigo(fabricante.getCodigo());
+		
+			em.remove(fabricanteTemp);
+			em.flush();//execute neste momento o commit
+		} catch (PersistenceException e) {
+			throw new NegocioException("Fabricante não pode ser excluído.");
+		}
 	}
 
 	public Fabricante buscarPeloCodigo(Long codigo) {
-		return null;
-		//NAO IMPLEMENTADO AINDA NO CURSO
-//		return em.find(Fabricante.class, codigo);
+		return em.find(Fabricante.class, codigo);
 	}
 	
 }
