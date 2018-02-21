@@ -11,8 +11,8 @@ import com.algaworks.curso.jpa2.service.CadastroFabricanteService;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesMessages;
 
-@Named
-@ViewScoped
+@Named//usando CDI e ajuda na tarefa de injecao de dependencia
+@ViewScoped//escopo da pagina
 public class CadastroFabricanteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,8 +23,9 @@ public class CadastroFabricanteBean implements Serializable {
 	private Fabricante fabricante;
 	
 	@Inject
-	private FacesMessages facesMessages;
+	private FacesMessages facesMessages;//arquivo proprio que auxilia na exibicao das mensagens
 	
+//	@PostConstruct // anotação constatante do video
 	public void inicializar() {
 		if (this.fabricante == null) {
 			limpar();

@@ -17,6 +17,12 @@ public class CadastroFabricanteService implements Serializable {
 	@Inject
 	private FabricanteDAO fabricanteDAO;
 	
+	/*
+	 * é costume abrir a transacao no service, pois assim é possivel 
+	 * aproveitar a mesma transacao.
+	 * 
+	 * esta anotação (@Transactional) é criada no projeto e controla a transacao.
+	 */
 	@Transactional
 	public void salvar(Fabricante fabricante) throws NegocioException {
 		if (StringUtils.isEmpty(fabricante.getNome())) { 
