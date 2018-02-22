@@ -40,7 +40,12 @@
 		    			<h:outputText value="#{fabricante.nome}" />
 		    		</p:column>
 		    		<p:column style="width: 100px; text-align: center">
-		    			<p:button outcome="CadastroFabricante" icon="ui-icon-pencil" title="Editar">
+		    			<!-- O OUTCOME É O NOME DO ARQUIVO XHTML DE DESTINO, NO CAMINHO ADEQUADO. NESTE CASO, ESTA NA MESMA PASTA -->
+		    			<!-- O F:PARAM PASSA O PARAMETRO PELA URL PARA A PROXIMA TELA -->
+		    			<p:button 
+		    				outcome="CadastroFabricante" 
+		    				icon="ui-icon-pencil" 
+		    				title="Editar">
 		    				<f:param name="fabricante" value="#{fabricante.codigo}"/>
 		    			</p:button>
 		    			<p:commandButton 

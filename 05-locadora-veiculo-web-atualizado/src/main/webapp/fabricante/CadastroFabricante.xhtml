@@ -11,6 +11,7 @@
     <ui:define name="corpo">
     	<f:metadata>
 <!--     		QUANDO ELE FOR EDITAR ELE IRA PASSAR POR ESTA PARTE PARA SETAR O FABRICANTE -->
+<!-- 				ELE RECEBE UM F:PARAM COM O NOME 'FABRICANTE' E SETA-O NO ATRIBUTO -->
 			<o:viewParam name="fabricante" value="#{cadastroFabricanteBean.fabricante}" />
 <!-- 			EM VEZ DE CHAMAR O POSTCONSTRUCT NO BEAN, ELE USA O VIEWACTION -->
 			<f:viewAction action="#{cadastroFabricanteBean.inicializar}"/>
