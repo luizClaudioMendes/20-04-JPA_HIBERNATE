@@ -42,11 +42,11 @@
 				<p:column headerText="Valor diária">
 					<h:outputText value="#{carro.valorDiaria}" />
 				</p:column>
-				<p:column headerText="Imagem" style="width: 100px; text-align: center">
-					<p:commandButton icon="ui-icon-extlink" title="Imagem" process="@this" oncomplete="PF('mostraImagem').show()" update=":frmPesquisa:mostraImagemDialog">
-						<f:setPropertyActionListener target="#{fotoCarroBean.carroSelecionado}" value="#{carro}" />
-					</p:commandButton>
-				</p:column>
+<!-- 				<p:column headerText="Imagem" style="width: 100px; text-align: center"> -->
+<!-- 					<p:commandButton icon="ui-icon-extlink" title="Imagem" process="@this" oncomplete="PF('mostraImagem').show()" update=":frmPesquisa:mostraImagemDialog"> -->
+<!-- 						<f:setPropertyActionListener target="#{fotoCarroBean.carroSelecionado}" value="#{carro}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 				</p:column> -->
 				<p:column headerText="Acessórios" style="width: 100px; text-align: center">
 		    			<p:commandButton icon="ui-icon-extlink" title="Acessórios" action="#{pesquisaCarroBean.buscarAcessoriosParaCarro}"
 		    					process="@this" oncomplete="PF('mostraAcessorios').show()" update=":frmPesquisa:mostraAcessoriosDialog">
@@ -80,10 +80,10 @@
     			<h:outputText value="Nenhum acessório" rendered="#{empty pesquisaCarroBean.carroSelecionado.acessorios}"/>
 			</p:dialog>
 			
-			<p:dialog id="mostraImagemDialog" header="Imagem" widgetVar="mostraImagem" modal="true" closeOnEscape="true">
-    			<h:outputText value="Nenhuma imagem cadastrada" rendered="#{fotoCarroBean.foto == null}"/>
-    			<p:graphicImage value="#{fotoCarroBean.foto}" cache="false" />
-			</p:dialog>
+<!-- 			<p:dialog id="mostraImagemDialog" header="Imagem" widgetVar="mostraImagem" modal="true" closeOnEscape="true"> -->
+<!--     			<h:outputText value="Nenhuma imagem cadastrada" rendered="#{fotoCarroBean.foto == null}"/> -->
+<!--     			<p:graphicImage value="#{fotoCarroBean.foto}" cache="false" /> -->
+<!-- 			</p:dialog> -->
 	    	
 	    </h:form>
     </ui:define>

@@ -37,11 +37,11 @@ public class Carro {
 	private BigDecimal valorDiaria;
 	private ModeloCarro modelo;
 	private List<Acessorio> acessorios;
-	private List<Aluguel> alugueis;
+//	private List<Aluguel> alugueis;
 
-	private Date dataCriacao;
-	private Date dataModificacao;
-	private byte[] foto;
+//	private Date dataCriacao;
+//	private Date dataModificacao;
+//	private byte[] foto;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,8 +85,9 @@ public class Carro {
 		this.valorDiaria = valorDiaria;
 	}
 
+//	@JoinColumn(name = "codigo_modelo")
+//	@ManyToOne
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "codigo_modelo")
 	public ModeloCarro getModelo() {
 		return modelo;
 	}
@@ -95,8 +96,9 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
+	@ManyToMany
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}
@@ -105,55 +107,55 @@ public class Carro {
 		this.acessorios = acessorios;
 	}
 
-	@OneToMany(mappedBy = "carro")
-	public List<Aluguel> getAlugueis() {
-		return alugueis;
-	}
+//	@OneToMany(mappedBy = "carro")
+//	public List<Aluguel> getAlugueis() {
+//		return alugueis;
+//	}
 
-	public void setAlugueis(List<Aluguel> alugueis) {
-		this.alugueis = alugueis;
-	}
+//	public void setAlugueis(List<Aluguel> alugueis) {
+//		this.alugueis = alugueis;
+//	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
+//	@Temporal(TemporalType.TIMESTAMP)
+//	public Date getDataCriacao() {
+//		return dataCriacao;
+//	}
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+//	public void setDataCriacao(Date dataCriacao) {
+//		this.dataCriacao = dataCriacao;
+//	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getDataModificacao() {
-		return dataModificacao;
-	}
+//	@Temporal(TemporalType.TIMESTAMP)
+//	public Date getDataModificacao() {
+//		return dataModificacao;
+//	}
 
-	public void setDataModificacao(Date dataModificacao) {
-		this.dataModificacao = dataModificacao;
-	}
+//	public void setDataModificacao(Date dataModificacao) {
+//		this.dataModificacao = dataModificacao;
+//	}
 
-	@PrePersist
-	@PreUpdate
-	public void configuraDatasCriacaoAlteracao() {
-		this.dataModificacao = new Date();
+//	@PrePersist
+//	@PreUpdate
+//	public void configuraDatasCriacaoAlteracao() {
+//		this.dataModificacao = new Date();
+//
+//		if (this.dataCriacao == null) {
+//			this.dataCriacao = new Date();
+//		}
+//	}
 
-		if (this.dataCriacao == null) {
-			this.dataCriacao = new Date();
-		}
-	}
+//	@Lob
+//	public byte[] getFoto() {
+//		return this.foto;
+//	}
 
-	@Lob
-	public byte[] getFoto() {
-		return this.foto;
-	}
-
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
+//	public void setFoto(byte[] foto) {
+//		this.foto = foto;
+//	}
 	
-	public boolean hasFoto() {
-		return this.foto != null && this.foto.length > 0;
-	}
+//	public boolean hasFoto() {
+//		return this.foto != null && this.foto.length > 0;
+//	}
 
 	@Override
 	public int hashCode() {

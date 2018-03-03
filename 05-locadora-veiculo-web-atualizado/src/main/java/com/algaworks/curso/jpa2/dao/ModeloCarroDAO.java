@@ -27,12 +27,11 @@ public class ModeloCarroDAO implements Serializable {
 	}
 	
 	public ModeloCarro buscarComFabricantePeloCodigo(Long codigo) {
-//		// Na edição do modelo de carro, é importante retornar o fabricante para o combo funcionar
-//		return manager.createQuery("select c from ModeloCarro c inner join fetch c.fabricante where c.codigo = :codigo"
-//				, ModeloCarro.class)
-//				.setParameter("codigo", codigo)
-//				.getSingleResult();
-		return null;
+		// Na edição do modelo de carro, é importante retornar o fabricante para o combo funcionar
+		return manager.createQuery("select c from ModeloCarro c inner join fetch c.fabricante where c.codigo = :codigo"
+				, ModeloCarro.class)
+				.setParameter("codigo", codigo)
+				.getSingleResult();
 	}
 	
 	public List<ModeloCarro> buscarTodos() {

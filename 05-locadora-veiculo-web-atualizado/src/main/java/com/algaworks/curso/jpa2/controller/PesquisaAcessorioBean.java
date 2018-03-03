@@ -21,12 +21,12 @@ public class PesquisaAcessorioBean implements Serializable {
 	@Inject
 	AcessorioDAO acessorioDAO;
 	
+	@Inject
+	private FacesMessages facesMessages;
+	
 	private List<Acessorio> acessorios;
 	
 	private Acessorio acessorioSelecionado;
-	
-	@Inject
-	private FacesMessages facesMessages;
 	
 	public void inicializar() {
 		acessorios = acessorioDAO.buscarTodos();

@@ -60,10 +60,10 @@ public class CadastroCarroBean implements Serializable {
 
 	public void salvar() {
 		try {
-			if (this.fotoCarro != null && this.fotoCarro.getContents() != null 
-					&& this.fotoCarro.getContents().length > 0) {
-				this.carro.setFoto(this.fotoCarro.getContents());
-			}
+//			if (this.fotoCarro != null && this.fotoCarro.getContents() != null 
+//					&& this.fotoCarro.getContents().length > 0) {
+//				this.carro.setFoto(this.fotoCarro.getContents());
+//			}
 
 			this.cadastroCarroService.salvar(carro);
 			facesMessages.info("Carro salvo com sucesso.");
