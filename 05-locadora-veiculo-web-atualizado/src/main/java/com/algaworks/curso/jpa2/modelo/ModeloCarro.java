@@ -16,7 +16,7 @@ public class ModeloCarro {
 	private Long codigo;
 	private String descricao;
 	private Fabricante fabricante;
-	private Categoria categoria;
+//	private Categoria categoria;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +36,9 @@ public class ModeloCarro {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigo_fabricante")
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "codigo_fabricante")
+	@ManyToOne
 	public Fabricante getFabricante() {
 		return fabricante;
 	}
@@ -46,15 +47,15 @@ public class ModeloCarro {
 		this.fabricante = fabricante;
 	}
 
-	@Enumerated(EnumType.STRING)
-	public Categoria getCategoria() {
-		return categoria;
-	}
+//	@Enumerated(EnumType.STRING)
+//	public Categoria getCategoria() {
+//		return categoria;
+//	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-/*
+//	public void setCategoria(Categoria categoria) {
+//		this.categoria = categoria;
+//	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,5 +80,5 @@ public class ModeloCarro {
 			return false;
 		return true;
 	}
-*/
+
 }

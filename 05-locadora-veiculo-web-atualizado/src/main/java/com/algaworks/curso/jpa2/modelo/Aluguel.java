@@ -101,7 +101,7 @@ public class Aluguel {
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
-/*
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,5 +126,5 @@ public class Aluguel {
 			return false;
 		return true;
 	}
-*/
+
 }
