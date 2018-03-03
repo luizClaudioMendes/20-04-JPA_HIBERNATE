@@ -59,7 +59,7 @@ public class ApoliceSeguro {
 	public void setProtecaoRoubo(Boolean protecaoRoubo) {
 		this.protecaoRoubo = protecaoRoubo;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,5 +84,5 @@ public class ApoliceSeguro {
 			return false;
 		return true;
 	}
-
+*/
 }

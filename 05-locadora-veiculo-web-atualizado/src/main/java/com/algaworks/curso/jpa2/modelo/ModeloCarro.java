@@ -54,7 +54,7 @@ public class ModeloCarro {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,5 +79,5 @@ public class ModeloCarro {
 			return false;
 		return true;
 	}
-
+*/
 }

@@ -154,7 +154,7 @@ public class Carro {
 	public boolean hasFoto() {
 		return this.foto != null && this.foto.length > 0;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -179,5 +179,5 @@ public class Carro {
 			return false;
 		return true;
 	}
-
+*/
 }

@@ -28,7 +28,7 @@ public class Acessorio {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,6 +52,6 @@ public class Acessorio {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
+	}*/
 
 }

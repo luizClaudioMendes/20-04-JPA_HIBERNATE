@@ -71,7 +71,7 @@ public abstract class Pessoa {
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,5 +96,5 @@ public abstract class Pessoa {
 			return false;
 		return true;
 	}
-
+*/
 }
