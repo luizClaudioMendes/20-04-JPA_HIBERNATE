@@ -11,6 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.algaworks.curso.jpa2.dao.FabricanteDAO;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 
+/*
+ * o converter serve para converter o objeto em string e vice-versa.
+ * 
+ */
 @FacesConverter(forClass = Fabricante.class)
 public class FabricanteConverter implements Converter {
 
