@@ -37,8 +37,8 @@ public class ModeloCarro {
 	}
 
 //	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "codigo_fabricante")
 	@ManyToOne
+	@JoinColumn(name="codigo_fabricante")
 	public Fabricante getFabricante() {
 		return fabricante;
 	}
