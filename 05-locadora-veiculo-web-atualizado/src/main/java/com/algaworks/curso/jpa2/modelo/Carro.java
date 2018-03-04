@@ -37,7 +37,7 @@ public class Carro {
 	private BigDecimal valorDiaria;
 	private ModeloCarro modelo;
 	private List<Acessorio> acessorios;
-//	private List<Aluguel> alugueis;
+	private List<Aluguel> alugueis;
 
 //	private Date dataCriacao;
 //	private Date dataModificacao;
@@ -107,14 +107,14 @@ public class Carro {
 		this.acessorios = acessorios;
 	}
 
-//	@OneToMany(mappedBy = "carro")
-//	public List<Aluguel> getAlugueis() {
-//		return alugueis;
-//	}
+	@OneToMany(mappedBy = "carro")//o mappedBy referencia o atributo java da outra classe que mapeou o carro
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
 
-//	public void setAlugueis(List<Aluguel> alugueis) {
-//		this.alugueis = alugueis;
-//	}
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
+	}
 
 //	@Temporal(TemporalType.TIMESTAMP)
 //	public Date getDataCriacao() {
