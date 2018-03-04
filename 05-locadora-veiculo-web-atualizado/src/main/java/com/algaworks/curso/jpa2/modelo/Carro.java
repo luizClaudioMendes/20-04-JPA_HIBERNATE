@@ -97,8 +97,8 @@ public class Carro {
 	}
 
 //	@ManyToMany(fetch = FetchType.LAZY)
-//	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
 	@ManyToMany
+	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))//name = nome da tabela, joinColumns mapeia o nome das primary keys de Carro e inverseJoinColumns de acessorios
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}
