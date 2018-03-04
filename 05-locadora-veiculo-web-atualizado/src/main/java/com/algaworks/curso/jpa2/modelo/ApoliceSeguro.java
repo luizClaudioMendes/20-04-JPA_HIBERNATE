@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "apolice_seguro")
+@Table(name = "tb_apolice_seguro")
 public class ApoliceSeguro {
 
 	private Long codigo;
