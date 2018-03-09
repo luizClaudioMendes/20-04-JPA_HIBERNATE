@@ -22,9 +22,9 @@ public class Aluguel {
 	private BigDecimal valorTotal;
 	private Carro carro;
 	private ApoliceSeguro apoliceSeguro;
-//	private Calendar dataPedido;
-//	private Date dataEntrega;
-//	private Date dataDevolucao;
+	private Calendar dataPedido;
+	private Date dataEntrega;
+	private Date dataDevolucao;
 //	private Motorista motorista;
 
 	@Id
@@ -65,32 +65,32 @@ public class Aluguel {
 		this.carro = carro;
 	}
 
-//	@Temporal(TemporalType.DATE)
-//	public Calendar getDataPedido() {
-//		return dataPedido;
-//	}
+	@Temporal(TemporalType.DATE)
+	public Calendar getDataPedido() {
+		return dataPedido;
+	}
 
-//	public void setDataPedido(Calendar dataPedido) {
-//		this.dataPedido = dataPedido;
-//	}
+	public void setDataPedido(Calendar dataPedido) {
+		this.dataPedido = dataPedido;
+	}
 
-//	@Temporal(TemporalType.TIMESTAMP)
-//	public Date getDataEntrega() {
-//		return dataEntrega;
-//	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataEntrega() {
+		return dataEntrega;
+	}
 
-//	public void setDataEntrega(Date dataEntrega) {
-//		this.dataEntrega = dataEntrega;
-//	}
+	public void setDataEntrega(Date dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
 
-//	@Temporal(TemporalType.TIMESTAMP)
-//	public Date getDataDevolucao() {
-//		return dataDevolucao;
-//	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataDevolucao() {
+		return dataDevolucao;
+	}
 
-//	public void setDataDevolucao(Date dataDevolucao) {
-//		this.dataDevolucao = dataDevolucao;
-//	}
+	public void setDataDevolucao(Date dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
 
 //	@ManyToOne
 //	@JoinColumn(name = "codigo_motorista")

@@ -23,7 +23,7 @@ public class CadastroAluguelService implements Serializable {
 			throw new NegocioException("O carro é obrigatório");
 		}
 		
-//		aluguel.setDataPedido(Calendar.getInstance());
+		aluguel.setDataPedido(Calendar.getInstance());
 		
 		this.aluguelDAO.salvar(aluguel);
 	}
