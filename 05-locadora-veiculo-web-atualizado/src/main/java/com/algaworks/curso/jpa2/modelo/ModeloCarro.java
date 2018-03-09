@@ -3,7 +3,6 @@ package com.algaworks.curso.jpa2.modelo;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +15,7 @@ public class ModeloCarro {
 	private Long codigo;
 	private String descricao;
 	private Fabricante fabricante;
-//	private Categoria categoria;
+	private Categoria categoria;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,14 +46,14 @@ public class ModeloCarro {
 		this.fabricante = fabricante;
 	}
 
-//	@Enumerated(EnumType.STRING)
-//	public Categoria getCategoria() {
-//		return categoria;
-//	}
+	@Enumerated(EnumType.STRING)
+	public Categoria getCategoria() {
+		return categoria;
+	}
 
-//	public void setCategoria(Categoria categoria) {
-//		this.categoria = categoria;
-//	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 	@Override
 	public int hashCode() {

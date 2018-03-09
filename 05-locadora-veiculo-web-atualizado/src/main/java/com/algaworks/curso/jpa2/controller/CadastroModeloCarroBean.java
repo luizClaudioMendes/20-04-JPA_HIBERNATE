@@ -1,7 +1,6 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class CadastroModeloCarroBean implements Serializable {
 
 	private List<Fabricante> fabricantes;
 
-//	private List<Categoria> categorias;
+	private List<Categoria> categorias;
 
 	@Inject
 	private CadastroModeloCarroService cadastroModeloCarroService;
@@ -54,7 +53,7 @@ public class CadastroModeloCarroBean implements Serializable {
 		}
 		
 		this.fabricantes = fabricanteDAO.buscarTodos();
-//		this.categorias = Arrays.asList(Categoria.values());
+		this.categorias = Arrays.asList(Categoria.values());
 	}
 
 	public ModeloCarro getModeloCarro() {
@@ -70,8 +69,7 @@ public class CadastroModeloCarroBean implements Serializable {
 	}
 
 	public List<Categoria> getCategorias() {
-//		return categorias;
-		return new ArrayList<>();
+		return categorias;
 	}
 
 	public boolean isEditando() {

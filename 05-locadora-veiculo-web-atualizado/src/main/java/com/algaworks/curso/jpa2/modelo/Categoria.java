@@ -1,7 +1,6 @@
 package com.algaworks.curso.jpa2.modelo;
 
 public enum Categoria {
-
 	HATCH_COMPACTO("Hatch compacto"),
 	HATCH_MEDIO("Hatch médio"),
 	SEDAN_COMPACTO("Sedan compacto"),
