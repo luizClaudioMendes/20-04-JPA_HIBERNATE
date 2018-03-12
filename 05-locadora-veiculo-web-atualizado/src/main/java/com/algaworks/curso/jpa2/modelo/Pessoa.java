@@ -16,10 +16,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//@Inheritance(strategy = InheritanceType.JOINED)
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TIPO_PESSOA", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="TIPO_PESSOA", discriminatorType=DiscriminatorType.INTEGER)
 public abstract class Pessoa {
 
 	private Long codigo;

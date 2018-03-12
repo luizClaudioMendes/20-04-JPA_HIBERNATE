@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("MOTORISTA")
+@DiscriminatorValue("1")
 public class Motorista extends Pessoa {
 
 	private String numeroCNH;

@@ -2,9 +2,9 @@ package com.algaworks.curso.jpa2.modelo;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+//@DiscriminatorValue("FUNCIONARIO")
 @Entity
-@DiscriminatorValue("FUNCIONARIO")
+@DiscriminatorValue("2")
 public class Funcionario extends Pessoa {
 
 	private String matricula;
