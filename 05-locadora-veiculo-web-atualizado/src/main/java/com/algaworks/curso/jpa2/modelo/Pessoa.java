@@ -16,8 +16,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+//@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_PESSOA", discriminatorType = DiscriminatorType.STRING)
 public abstract class Pessoa {
 
@@ -25,7 +26,7 @@ public abstract class Pessoa {
 	private String nome;
 	private Date dataNascimento;
 	private String cpf;
-	private Sexo sexo;
+//	private Sexo sexo;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,14 +64,14 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 	}
 
-	@Enumerated(EnumType.STRING)
-	public Sexo getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
-	}
+//	@Enumerated(EnumType.STRING)
+//	public Sexo getSexo() {
+//		return sexo;
+//	}
+//
+//	public void setSexo(Sexo sexo) {
+//		this.sexo = sexo;
+//	}
 
 	@Override
 	public int hashCode() {

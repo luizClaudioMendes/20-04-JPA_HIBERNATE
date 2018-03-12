@@ -25,7 +25,7 @@ public class CadastroMotoristaBean implements Serializable {
 	@Inject
 	private CadastroMotoristaService cadastroMotoristaService;
 	
-	private List<Sexo> sexos;
+//	private List<Sexo> sexos;
 	
 	@Inject
 	private FacesMessages facesMessages;
@@ -35,7 +35,7 @@ public class CadastroMotoristaBean implements Serializable {
 			this.limpar();
 		}
 		
-		this.sexos = Arrays.asList(Sexo.values());
+//		this.sexos = Arrays.asList(Sexo.values());
 	}
 	
 	public void salvar() {
@@ -60,9 +60,9 @@ public class CadastroMotoristaBean implements Serializable {
 		this.motorista = motorista;
 	}
 	
-	public List<Sexo> getSexos() {
-		return sexos;
-	}
+//	public List<Sexo> getSexos() {
+//		return sexos;
+//	}
 	
 	public boolean isEditando() {
 		return this.motorista.getCodigo() != null;
