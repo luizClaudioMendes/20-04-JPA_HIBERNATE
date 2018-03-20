@@ -18,11 +18,16 @@ public class ConsultaFabricantes {
 			System.out.println(fabricante.getNome());
 		}
 		
+		
+		//-------------------------------------
 		List<String> fabricantes1 = em.createQuery("select f.nome from Fabricante f", String.class).getResultList();
 		
 		for (String fabricante : fabricantes1) {
 			System.out.println("nome: " +fabricante);
 		}
+		
+		//-------------------------------------
+		
 		
 		em.close();
 		
