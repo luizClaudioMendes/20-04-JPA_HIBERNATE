@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.util.JPAUtil;
 
-public class ConsultaAcessoropPorModeloCarro {
+public class ConsultaAcessorioPorModeloCarro {
 	
 	public static void main(String[] args) {
 		EntityManager em = JPAUtil.createEntitymanager();
