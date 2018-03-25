@@ -33,7 +33,7 @@ public class CarroDAO implements Serializable {
 	}
 
 	public List<Carro> buscarTodos() {
-		return manager.createNamedQuery("Carro.buscarTodos", Carro.class).getResultList();
+		return manager.createNamedQuery("Carro.buscarTodos", Carro.class).getResultList();  //utiliza a named query criada na entidade Carro
 	}
 	
 	@Transactional
@@ -49,8 +49,8 @@ public class CarroDAO implements Serializable {
 	}
 
 	public Carro buscarAcessorios(Long codigo) {
-		return manager.createNamedQuery("Carro.buscarCarroComAcessorios", Carro.class)
-				.setParameter("codigo", codigo)
+		return manager.createNamedQuery("Carro.buscarCarroComAcessorios", Carro.class)  //utiliza a named query criada na entidade Carro
+				.setParameter("codigo", codigo) //utiliza o setParameter normalmente
 				.getSingleResult();
 	}
 

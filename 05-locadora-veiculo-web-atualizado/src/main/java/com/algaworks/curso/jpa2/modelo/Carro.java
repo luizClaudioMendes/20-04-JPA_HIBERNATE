@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({
+@NamedQueries({//named queries
 		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo order by c.codigo"),
 		@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
 				+ " where c.codigo = :codigo") })
