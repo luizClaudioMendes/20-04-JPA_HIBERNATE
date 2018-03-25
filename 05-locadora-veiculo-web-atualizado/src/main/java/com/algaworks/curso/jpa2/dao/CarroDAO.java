@@ -54,15 +54,18 @@ public class CarroDAO implements Serializable {
 				.getSingleResult();
 	}
 
+	/*
+	 * este metodo é utilizado na paginacao
+	 */
 	public List<Carro> buscarComPaginacao(int first, int pageSize) {
 		return manager.createNamedQuery("Carro.buscarTodos", Carro.class)
-							.setFirstResult(first)
-							.setMaxResults(pageSize)
+							.setFirstResult(first) //utilizado na paginacao
+							.setMaxResults(pageSize) //utilizado na paginacao
 							.getResultList();
 	}
 
 	public Long encontrarQuantidadeDeCarros() {
-		return manager.createQuery("select count(c) from Carro c", Long.class).getSingleResult();
+		return manager.createQuery("select count(c) from Carro c", Long.class).getSingleResult(); //utilizado na paginacao
 	}
 	
 }

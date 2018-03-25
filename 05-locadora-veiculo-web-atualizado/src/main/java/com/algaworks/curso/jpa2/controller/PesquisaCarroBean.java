@@ -25,12 +25,12 @@ public class PesquisaCarroBean implements Serializable {
 	@Inject
 	private CarroDAO carroDAO;
 	
-	private LazyCarroDataModel lazyCarros;
+	private LazyCarroDataModel lazyCarros; //utilizado na paginacao
 	
 	private Carro carroSelecionado;
 	
 	public void inicializar() {
-		lazyCarros = new LazyCarroDataModel(carroDAO);
+		lazyCarros = new LazyCarroDataModel(carroDAO); //utilizado na paginacao
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -57,7 +57,7 @@ public class PesquisaCarroBean implements Serializable {
 	}
 	
 	public LazyCarroDataModel getLazyCarros() {
-		return lazyCarros;
+		return lazyCarros; //utilizado na paginacao
 	}
 	
 }

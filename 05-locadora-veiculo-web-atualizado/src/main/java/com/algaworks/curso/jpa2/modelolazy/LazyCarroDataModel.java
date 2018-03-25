@@ -20,6 +20,13 @@ public class LazyCarroDataModel extends LazyDataModel<Carro> implements Serializ
 		this.carroDAO = carroDAO;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see org.primefaces.model.LazyDataModel#load(int, int, java.lang.String, org.primefaces.model.SortOrder, java.util.Map)
+	 * 
+	 * esta classe é utilizada na paginacao.
+	 */
+	
 	@Override
 	public List<Carro> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		List<Carro> carros = this.carroDAO.buscarComPaginacao(first, pageSize);
@@ -28,6 +35,7 @@ public class LazyCarroDataModel extends LazyDataModel<Carro> implements Serializ
 		// Como nesse exemplo não temos filtro, então buscamos a quantidade total de carros para a paginação
 		// Não pode ser o tamanho da lista carros pois a mesma está limitada ao pageSize
 		this.setRowCount(this.carroDAO.encontrarQuantidadeDeCarros().intValue());
+		
 		return carros;
 	}
 	
