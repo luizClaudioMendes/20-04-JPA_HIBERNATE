@@ -10,6 +10,9 @@ import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+/*
+ * classe utilizada no controle da transacao
+ */
 @Priority(Interceptor.Priority.LIBRARY_BEFORE)
 @Interceptor
 @Transactional

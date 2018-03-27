@@ -109,4 +109,11 @@ public class Java8DateUtils {
 	    
 	    return date;
     }
+	
+	 public static Integer obterDiasEntreDuasDatasJava7(Date dataInicial, Date dataFinal) {
+        DateTime dataComparativa = new DateTime(dataFinal);
+        DateTime dateInicial = new DateTime(dataInicial);
+        return Days.daysBetween(dateInicial, dataComparativa).getDays();
+    }
+
 }

@@ -7,6 +7,9 @@ import java.lang.annotation.Target;
 
 import javax.interceptor.InterceptorBinding;
 
+/*
+ * classe utilizada no controle da transacao
+ */
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
