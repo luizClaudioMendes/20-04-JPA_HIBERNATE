@@ -1,3 +1,4 @@
+USANDO JBOSS
 1. Extrair o JBoss para uma pasta qualquer
 
 2. Configurar o módulo do datasource
@@ -36,5 +37,49 @@
   <drivers>
     <driver name="mysql" module="com.mysql"/>
   </drivers>
+  
+  
+USANDO WILDFLY
+1. Extrair o wildfly para uma pasta qualquer
+
+2. Configurar o módulo do datasource
+
+  2.1 Criar as pastas mysql/main em <wildfly_home>/modules/system/layers/base/com/
+  
+  2.2 Copiar o driver (mysql-connector-java-5.1.34-bin.jar) para esta pasta
+  
+  2.3 Criar o arquivo module.xml com o seguinte conteúdo:
+  
+  <?xml version="1.0" ?>
+	<module xmlns="urn:jboss:module:1.1" name="com.mysql">
+	    <resources>
+	        <resource-root path="mysql-connector-java-5.1.34-bin.jar"/>
+	    </resources>
+	    <dependencies>
+	        <module name="javax.api"/>
+	        <module name="javax.transaction.api"/>
+	    </dependencies>
+	</module>
+
+  2.4 Editar o arquivo <wildfly_home>/standalone/configuration/standalone.xml
+  
+  <datasource jndi-name="java:/projetoJbossDS" pool-name="MySqlDS" enabled="true" use-java-context="true">
+		<connection-url>jdbc:mysql://localhost:3306/cadastro_cliente</connection-url>
+		<driver>mysql</driver>
+		<security>
+			<user-name>root</user-name>
+			<password>root</password>
+		</security>
+		<timeout>
+			<idle-timeout-minutes>0</idle-timeout-minutes>
+			<query-timeout>600</query-timeout>
+		</timeout>
+	</datasource>
+    
+	<drivers>
+		<driver name="mysql" module="com.mysql">
+			<driver-class>com.mysql.jdbc.Driver</driver-class>
+		</driver>
+    </drivers>
   
 3. Crie o schema "cadastro_cliente" no MySQL para o usuário root, se ainda não tiver sido criado.
