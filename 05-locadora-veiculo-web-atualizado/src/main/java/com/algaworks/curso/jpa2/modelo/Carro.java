@@ -38,9 +38,9 @@ public class Carro {
 	private ModeloCarro modelo;
 	private List<Acessorio> acessorios;
 	private List<Aluguel> alugueis;
+	private Date dataCriacao;
+	private Date dataModificacao;
 
-//	private Date dataCriacao;
-//	private Date dataModificacao;
 //	private byte[] foto;
 
 	@Id
@@ -115,33 +115,33 @@ public class Carro {
 		this.alugueis = alugueis;
 	}
 
-//	@Temporal(TemporalType.TIMESTAMP)
-//	public Date getDataCriacao() {
-//		return dataCriacao;
-//	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
 
-//	public void setDataCriacao(Date dataCriacao) {
-//		this.dataCriacao = dataCriacao;
-//	}
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
 
-//	@Temporal(TemporalType.TIMESTAMP)
-//	public Date getDataModificacao() {
-//		return dataModificacao;
-//	}
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataModificacao() {
+		return dataModificacao;
+	}
 
-//	public void setDataModificacao(Date dataModificacao) {
-//		this.dataModificacao = dataModificacao;
-//	}
+	public void setDataModificacao(Date dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
 
-//	@PrePersist
-//	@PreUpdate
-//	public void configuraDatasCriacaoAlteracao() {
-//		this.dataModificacao = new Date();
-//
-//		if (this.dataCriacao == null) {
-//			this.dataCriacao = new Date();
-//		}
-//	}
+	@PrePersist//interceptacao da alteraçao do ciclo de vida do JPA
+	@PreUpdate//interceptacao da alteraçao do ciclo de vida do JPA
+	public void configuraDatasCriacaoAlteracao() {
+		this.dataModificacao = new Date();
+
+		if (this.dataCriacao == null) {
+			this.dataCriacao = new Date();
+		}
+	}
 
 //	@Lob
 //	public byte[] getFoto() {
