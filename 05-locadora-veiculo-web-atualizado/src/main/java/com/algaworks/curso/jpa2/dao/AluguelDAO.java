@@ -36,18 +36,29 @@ public class AluguelDAO implements Serializable {
 		manager.merge(aluguel);
 	}
 
-	public List<Aluguel> buscarPorDataDeEntregaEModeloCarro(Date dataEntrega,
-			ModeloCarro modelo) {
+	public List<Aluguel> buscarPorDataDeEntregaEModeloCarro(Date dataEntrega, ModeloCarro modelo) {
 		
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Aluguel> criteriaQuery = builder.createQuery(Aluguel.class);
-		Root<Aluguel> a = criteriaQuery.from(Aluguel.class);
-		criteriaQuery.select(a);
+		Root<Aluguel> a = criteriaQuery.from(Aluguel.class); //equivalente ao select a from aluguel
+		criteriaQuery.select(a);// implementa o select
 		
-		List<Predicate> predicates = new ArrayList<>();
-		if (dataEntrega != null) {
+		List<Predicate> predicates = new ArrayList<>(0); //lista de filtros
+		
+		if (dataEntrega != null) { //se tivermos selecionado alguma data
+			/*
+			 * ParameterExpression sao parametros do filtro.
+			 * ao escrevermos : builder.parameter(Date.class, "dataEntregaInicial") 
+			 * a 'dataEntregaInicial' é equivalente ao :dataEntregaInicial do JPQL
+			 */
 			ParameterExpression<Date> dataEntregaInicial = builder.parameter(Date.class, "dataEntregaInicial");
 			ParameterExpression<Date> dataEntregaFinal = builder.parameter(Date.class, "dataEntregaFinal");
+			
+			/*
+			 * o between tem como parametros:
+			 * a.<Date>get("dataEntrega") -- busca na variavel a o atributo 'dataEntrega', que é um Date
+			 *  dataEntregaInicial, dataEntregaFinal -- seta como valor inicial e final no between (que tem dois parametros)
+			 */
 			predicates.add(builder.between(a.<Date>get("dataEntrega"), dataEntregaInicial, dataEntregaFinal));
 		}
 		
@@ -56,9 +67,9 @@ public class AluguelDAO implements Serializable {
 			predicates.add(builder.equal(a.get("carro").get("modelo"), modeloExpression));
 		}
 		
-		criteriaQuery.where(predicates.toArray(new Predicate[0]));
+		criteriaQuery.where(predicates.toArray(new Predicate[0])); // adiciona os filtros na query
 		
-		TypedQuery<Aluguel> query = manager.createQuery(criteriaQuery);
+		TypedQuery<Aluguel> query = manager.createQuery(criteriaQuery); // cria a query
 		
 		if (dataEntrega != null) {
 			Calendar dataEntregaInicial = Calendar.getInstance();
@@ -73,6 +84,10 @@ public class AluguelDAO implements Serializable {
 			dataEntregaFinal.set(Calendar.MINUTE, 59);
 			dataEntregaFinal.set(Calendar.SECOND, 59);
 			
+			/*
+			 * insere os parametros na query
+			 * equivalente ao :dataEntregaInicial por exemplo
+			 */
 			query.setParameter("dataEntregaInicial", dataEntregaInicial.getTime());
 			query.setParameter("dataEntregaFinal", dataEntregaFinal.getTime());
 		}
