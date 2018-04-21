@@ -17,7 +17,7 @@
 		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
-	
+
 <!-- 	configuracao para retirar do log os logs do junit -->
 	<root>
     	<priority value ="debug"></priority>

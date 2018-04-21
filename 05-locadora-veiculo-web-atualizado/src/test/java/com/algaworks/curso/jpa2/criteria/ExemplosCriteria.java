@@ -1,5 +1,6 @@
 package com.algaworks.curso.jpa2.criteria;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.Carro;
 
 public class ExemplosCriteria {
@@ -47,7 +49,7 @@ public class ExemplosCriteria {
 	
 	@BeforeClass
 	public static void init() {
-		factory = Persistence.createEntityManagerFactory("locadoraVeiculoPU");
+		factory = Persistence.createEntityManagerFactory("junitPU");
 	}
 	
 	@Before
@@ -103,24 +105,47 @@ public class ExemplosCriteria {
 		TypedQuery<String> query = manager.createQuery(criteriaQuery);
 		List<String> placas = query.getResultList();
 		
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		for (String placa : placas) {
 			System.out.println(placa);
 		}
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	}
 	
 	@Test
 	public void funcoesDeAgregacao() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		
-//		CriteriaQuery<BigDecimal> criteriaQuery = builder.createQuery(BigDecimal.class);
-//		
-//		Root<Aluguel> aluguel = criteriaQuery.from(Aluguel.class);
-//		criteriaQuery.select(builder.sum(aluguel.<BigDecimal>get("valorTotal")));
-//		
-//		TypedQuery<BigDecimal> query = manager.createQuery(criteriaQuery);
-//		BigDecimal total = query.getSingleResult();
-//		
-//		System.out.println("Soma de todos os alugueis: " + total);
+		/*
+		 * as funcoes de agregacao com criteria sao bem simples!
+		 * 
+		 * o que sao funcoes de agregacao? sao todas aquelas funcoes utilizadas pelos
+		 * bd´s que retornam algum tipo de calculo, como soma, media, max, min, etc.
+		 * 
+		 * as funçoes de agregaçao sao criadas no builder.
+		 * 
+		 * neste exemplo queremos ver a soma de todos os alugueis cadastrados no bd.
+		 * 
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		
+		CriteriaQuery<BigDecimal> criteriaQuery = builder.createQuery(BigDecimal.class);
+		
+		/**
+		 * o from é sobre a entidade Aluguel, como seria na native query.
+		 */
+		Root<Aluguel> aluguel = criteriaQuery.from(Aluguel.class);
+		
+		/*
+		 * aqui criamos a funcao de agregacao, neste caso um sum sobre a coluna valor total 
+		 * da classe Aluguel
+		 */
+		criteriaQuery.select(builder.sum(aluguel.<BigDecimal>get("valorTotal")));
+		//equivalente ao select sum(a.valorTotal) from Aluguel a
+		
+		TypedQuery<BigDecimal> query = manager.createQuery(criteriaQuery);
+		BigDecimal total = query.getSingleResult();
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("Soma de todos os alugueis: " + total);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	}
 	
 	@Test

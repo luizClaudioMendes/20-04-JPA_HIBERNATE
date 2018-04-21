@@ -13,4 +13,21 @@
 		</properties>
 	</persistence-unit>
 	
+<!-- 	TESTE COM OUTRO PERSISTENCE UNIT PARA JUNIT -->
+	<persistence-unit name="junitPU" transaction-type="RESOURCE_LOCAL">
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/locadora"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		
+			
+		<!-- validate | update | create | create-drop -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+		</properties>
+	
+	</persistence-unit>
+	
 </persistence>
