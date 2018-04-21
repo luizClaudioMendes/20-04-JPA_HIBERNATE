@@ -20,8 +20,8 @@
 	
 <!-- 	configuracao para retirar do log os logs do junit -->
 	<root>
-    	<priority value ="debug"></priority>
-    	<appender-ref ref="console"></appender>
+    	<priority value ="debug" />
+<!--     	<appender-ref ref="console" /> -->
   	</root>
 
 </log4j:configuration>

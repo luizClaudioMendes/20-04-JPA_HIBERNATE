@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -148,54 +149,122 @@ public class ExemplosCriteria {
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	}
 	
+	/*
+	 * o metodos resultadoComplexo(), resultadoTupla() e resultadoConstrutores() são formas de se buscar com projecoes, mas desta vez, 
+	 * retornando varios atributos ao mesmo tempo.
+	 * os metodos estao por ordem de complexidade e de elegancia.
+	 */
+	
+	/*
+	 * este metodo é o mais rapido e facil dos metodos.
+	 * nele é executado um multiselect, que nada mais é do que retornar varios atributos na consulta
+	 */
 	@Test
 	public void resultadoComplexo() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		criteriaQuery.multiselect(carro.get("placa"), carro.get("valorDiaria"));
-//		
-//		TypedQuery<Object[]> query = manager.createQuery(criteriaQuery);
-//		List<Object[]> resultado = query.getResultList();
-//		
-//		for (Object[] valores : resultado) {
-//			System.out.println(valores[0] + " - " + valores[1]);
-//		}
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		/*
+		 * como sao varios os retornos, entao devemos guarda-lo como object[]
+		 */
+		CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		/*
+		 *o multiselect recebe os atributos que se quer receber.
+		 *a ordem passada, com inicio no index 0,será a ordem recebida. 
+		 */
+		criteriaQuery.multiselect(carro.get("placa"), carro.get("valorDiaria"));
+		
+		TypedQuery<Object[]> query = manager.createQuery(criteriaQuery);
+		List<Object[]> resultado = query.getResultList();
+		
+		/*
+		 * para recuperar os valores, baixa acessar o array na posicao desejada, conforme
+		 * passado no multiselect.
+		 */
+		for (Object[] valores : resultado) {
+			System.out.println(valores[0] + " - " + valores[1]);
+		}
 	}
 	
 	@Test
 	public void resultadoTupla() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Tuple> criteriaQuery = builder.createTupleQuery();
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		criteriaQuery.multiselect(carro.get("placa").alias("placaCarro")
-//						, carro.get("valorDiaria").alias("valorCarro"));
-//		
-//		TypedQuery<Tuple> query = manager.createQuery(criteriaQuery);
-//		List<Tuple> resultado = query.getResultList();
-//		
-//		for (Tuple tupla : resultado) {
-//			System.out.println(tupla.get("placaCarro") + " - " + tupla.get("valorCarro"));
-//		}
+		/*
+		 * o que sao tuplas?
+		 * tuplas sao objetos como se fosse um mapa, com chave e valor.
+		 * 
+		 * por isso usamos o alias.
+		 * 
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		
+		/*
+		 * como estamos utilizando tuplas, entao o tipo da CriteriaQuery sera Tupla e o 
+		 * builder usara o createTupleQuery()
+		 */
+		CriteriaQuery<Tuple> criteriaQuery = builder.createTupleQuery();
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		/*
+		 * no multiselect, alem de colocar os atributos pretendidos, devemos tambem 
+		 * colocar o alias, que sera a chave dentro da tupla.
+		 * o alias pode ser qualquer palavra. 
+		 */
+		criteriaQuery.multiselect(carro.get("placa").alias("placaCarro")
+						, carro.get("valorDiaria").alias("valorCarro"));
+		
+		List<Tuple> resultado = null;
+		try {
+			/*
+			 * tanto a typedQuery como a lista de resultado, terao o tipo de tupla.
+			 */
+			TypedQuery<Tuple> query = manager.createQuery(criteriaQuery);
+			resultado = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(resultado == null || resultado.isEmpty()) {
+			System.out.println("LISTA VAZIA");
+		}
+		
+		
+		for (Tuple tupla : resultado) {
+			System.out.println(tupla.get("placaCarro") + " - " + tupla.get("valorCarro"));
+		}
 	}
 	
 	@Test
 	public void resultadoConstrutores() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<PrecoCarro> criteriaQuery = builder.createQuery(PrecoCarro.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		criteriaQuery.select(builder.construct(PrecoCarro.class, 
-//						carro.get("placa"), carro.get("valorDiaria")));
-//		
-//		TypedQuery<PrecoCarro> query = manager.createQuery(criteriaQuery);
-//		List<PrecoCarro> resultado = query.getResultList();
-//		
-//		for (PrecoCarro precoCarro : resultado) {
-//			System.out.println(precoCarro.getPlaca() + " - " + precoCarro.getValor());
-//		}
+		/*
+		 * o resultado com construtores é a mais elegante das soluçoes.
+		 * ela utiliza um VO para armazenar os dados.
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<PrecoCarro> criteriaQuery = builder.createQuery(PrecoCarro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		/*
+		 * utilizamos o metodo construct do builder, e passamos a classe do VO, e a seguir
+		 * passamos a sequencia exata do construtor do objeto VO.
+		 */
+		criteriaQuery.select(builder.construct(PrecoCarro.class, 
+						carro.get("placa"), carro.get("valorDiaria")));
+		
+		/*
+		 * o tipo da typedquery é o VO
+		 */
+		TypedQuery<PrecoCarro> query = manager.createQuery(criteriaQuery);
+		List<PrecoCarro> resultado = query.getResultList();
+		
+		/*
+		 * para acessar os dados basta utilizar os get e sets
+		 */
+		for (PrecoCarro precoCarro : resultado) {
+			System.out.println(precoCarro.getPlaca() + " - construtores -  " + precoCarro.getValor());
+		}
 	}
 	
 	@Test
