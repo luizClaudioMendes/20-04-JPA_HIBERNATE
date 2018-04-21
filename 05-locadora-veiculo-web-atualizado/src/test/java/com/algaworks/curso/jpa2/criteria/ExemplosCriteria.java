@@ -9,6 +9,8 @@ import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.junit.After;
 import org.junit.Before;
@@ -267,43 +269,76 @@ public class ExemplosCriteria {
 		}
 	}
 	
+	/*
+	 * exemplo de codigo para executar uma funcao do bd, neste caso, um uppercase
+	 */
 	@Test
 	public void exemploFuncao() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		Predicate predicate = builder.equal(builder.upper(carro.<String>get("cor")), 
-//									"prata".toUpperCase());
-//		
-//		criteriaQuery.select(carro);
-//		criteriaQuery.where(predicate);
-//		
-//		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
-//		List<Carro> carros = query.getResultList();
-//		
-//		for (Carro c : carros) {
-//			System.out.println(c.getPlaca() + " - " + c.getCor());
-//		}
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		/*
+		 * RESTRICAO
+		 * o upper funciona da seguinte forma:
+		 * (atributo, valor da consulta)
+		 * 
+		 * no exemplo, o 'BrAnCo' seria o valor vindo do filtro.
+		 * e seria estabilizado pelo touppercase e o valor do banco seria estabilizado 
+		 * pelo builder.upper
+		 */
+		Predicate predicate = builder.equal(builder.upper(carro.<String>get("cor")), 
+									"BrAnCo".toUpperCase());
+		
+		criteriaQuery.select(carro);
+		
+		criteriaQuery.where(predicate);
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getCor());
+		}
 	}
 	
 	@Test
 	public void exemploOrdenacao() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		Order order = builder.desc(carro.get("valorDiaria"));
-//		
-//		criteriaQuery.select(carro);
-//		criteriaQuery.orderBy(order);
-//		
-//		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
-//		List<Carro> carros = query.getResultList();
-//		
-//		for (Carro c : carros) {
-//			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
-//		}
+		/*
+		 * para ordenar uma lista de resultados, basta somente incliur 
+		 * na criteriaQuery um order by.
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		/*
+		 * o objeto order sera encarregado de fazer a ordenaçao. neste caso é utilizado
+		 * a ordenacao desc, criada a partir do builder, em um atributo, neste caso,
+		 * o valorDiaria.
+		 */
+		Order order = builder.desc(carro.get("valorDiaria"));
+		
+		criteriaQuery.select(carro);
+		
+		/*
+		 * adicionamos o order by.
+		 */
+		criteriaQuery.orderBy(order);
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
+		}
+		
+		/*
+		 * desta forma o resultado na lista estará ordenado pelo valor do valorDiaria
+		 * do maior para o menor.
+		 */
 	}
 	
 	@Test
