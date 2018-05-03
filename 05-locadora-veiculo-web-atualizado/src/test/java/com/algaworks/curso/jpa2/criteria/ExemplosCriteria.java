@@ -9,6 +9,7 @@ import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -19,6 +20,7 @@ import org.junit.Test;
 
 import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 
 public class ExemplosCriteria {
 	/*
@@ -342,22 +344,90 @@ public class ExemplosCriteria {
 	}
 	
 	@Test
-	public void exemploJoinEFetch() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		Join<Carro, ModeloCarro> modelo = (Join) carro.fetch("modelo");
-//		
-//		criteriaQuery.select(carro);
-//		criteriaQuery.where(builder.equal(modelo.get("descricao"), "Fit"));
-//		
-//		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
-//		List<Carro> carros = query.getResultList();
-//		
-//		for (Carro c : carros) {
-//			System.out.println(c.getPlaca());
-//		}
+	public void exemploJoinEFetch1() {
+		/*
+		 * este exemplo mostra como fazer um select com as entidades
+		 * carro e modelo usando o join e o fetch.
+		 * 
+		 * o resultados que queremos é que seja impresso
+		 * a placa do carro (Carro) e o modelo (ModeloCarro)
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Join<Carro, ModeloCarro> modelo = (Join) carro.fetch("modelo");//join com fetch
+		
+		criteriaQuery.select(carro);
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getModelo().getDescricao());
+		}
+	}
+	
+	@Test
+	public void exemploJoinEFetch2() {
+		/*
+		 * este exemplo mostra como fazer um select com as entidades
+		 * carro e modelo usando o join e o fetch e realizando 
+		 * um filtro.
+		 * 
+		 * o resultados que queremos é que seja impresso
+		 * a placa do carro (Carro) e o modelo (ModeloCarro)
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Join<Carro, ModeloCarro> modelo = (Join) carro.fetch("modelo");//join com fetch
+		
+		criteriaQuery.select(carro);
+		criteriaQuery.where(builder.equal(modelo.get("descricao"), "Fit")); //filtro
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getModelo().getDescricao());
+		}
+	}
+	
+	@Test
+	public void exemploJoinEFetch3() {
+		/*
+		 * este exemplo mostra como fazer um select com as entidades
+		 * carro e modelo usando somente o join e realizando 
+		 * um filtro.
+		 * 
+		 * o resultados que queremos é que seja impresso
+		 * a placa do carro (Carro).
+		 * 
+		 * o modelo nao pode ser utilizado neste caso porque ele nao 
+		 * será recuperado do banco.
+		 */
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Join<Carro, ModeloCarro> modelo = (Join) carro.join("modelo");//join SEM fetch
+		
+		criteriaQuery.select(carro);
+		criteriaQuery.where(builder.equal(modelo.get("descricao"), "Civic")); //filtro
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		
+		/*
+		 * neste caso, ele ira fazer selects separados para 
+		 * trazer o modelo, como fazia antes. (má performance)
+		 * 
+		 */
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getModelo().getDescricao());
+		}
 	}
 	
 	@Test

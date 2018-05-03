@@ -23,9 +23,11 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+//select c from Carro c inner join fetch c.modelo order by c.codigo
 @Entity
 @NamedQueries({//named queries
-		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo order by c.codigo"),
+		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo"),
 		@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
 				+ " where c.codigo = :codigo") })
 public class Carro {
@@ -86,7 +88,6 @@ public class Carro {
 	}
 
 //	@JoinColumn(name = "codigo_modelo")
-//	@ManyToOne
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	public ModeloCarro getModelo() {
 		return modelo;
