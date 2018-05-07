@@ -13,6 +13,8 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -432,38 +434,68 @@ public class ExemplosCriteria {
 	
 	@Test
 	public void mediaDasDiariasDosCarros() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Double> criteriaQuery = builder.createQuery(Double.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		criteriaQuery.select(builder.avg(carro.<Double>get("valorDiaria")));
-//		
-//		TypedQuery<Double> query = manager.createQuery(criteriaQuery);
-//		Double total = query.getSingleResult();
-//		
-//		System.out.println("Média da diária: " + total);
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Double> criteriaQuery = builder.createQuery(Double.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		criteriaQuery.select(builder.avg(carro.<Double>get("valorDiaria")));//MEDIA do valor da diaria
+		
+		TypedQuery<Double> query = manager.createQuery(criteriaQuery);
+		Double total = query.getSingleResult();
+		
+		System.out.println("Média da diária: " + total);
 	}
 	
 	@Test
 	public void carrosComValoresAcimaDaMedia() {
-//		CriteriaBuilder builder = manager.getCriteriaBuilder();
-//		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
-//		Subquery<Double> subquery = criteriaQuery.subquery(Double.class);
-//		
-//		Root<Carro> carro = criteriaQuery.from(Carro.class);
-//		Root<Carro> carroSub = subquery.from(Carro.class);
-//		
-//		subquery.select(builder.avg(carroSub.<Double>get("valorDiaria")));
-//		
-//		criteriaQuery.select(carro);
-//		criteriaQuery.where(builder.greaterThanOrEqualTo(carro.<Double>get("valorDiaria"), subquery));
-//		
-//		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
-//		List<Carro> carros = query.getResultList();
-//		
-//		for (Carro c : carros) {
-//			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
-//		}
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		/*
+		 * como a subquery retorna um valor com casas decimais, utiliza-se
+		 * o tipo Double.class
+		 */
+		Subquery<Double> subquery = criteriaQuery.subquery(Double.class); //subquery
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Root<Carro> carroSub = subquery.from(Carro.class); //subquery
+		
+		subquery.select(builder.avg(carroSub.<Double>get("valorDiaria")));//subquery
+		
+		criteriaQuery.select(carro);
+		criteriaQuery.where(builder.greaterThanOrEqualTo(carro.<Double>get("valorDiaria"), subquery));//subquery
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
+		}
+		
+	}
+	
+	@Test
+	public void carrosComValoresAcimaDaMediaOrganizado() {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		
+		
+		criteriaQuery.select(carro);
+		
+		//SUBQUERY
+		Subquery<Double> subquery = criteriaQuery.subquery(Double.class);
+		Root<Carro> carroSub = subquery.from(Carro.class);
+		subquery.select(builder.avg(carroSub.<Double>get("valorDiaria")));
+		
+		criteriaQuery.where(builder.lessThanOrEqualTo(carro.<Double>get("valorDiaria"), subquery));
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
+		}
 		
 	}
 	
