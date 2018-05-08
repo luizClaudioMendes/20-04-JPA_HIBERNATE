@@ -88,7 +88,7 @@ public class Carro {
 	}
 
 //	@JoinColumn(name = "codigo_modelo")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) // o cascade = CascadeType.PERSIST permite salvar o carro e juntamente salvar secundariamente um novo modelo de carro
 	public ModeloCarro getModelo() {
 		return modelo;
 	}
