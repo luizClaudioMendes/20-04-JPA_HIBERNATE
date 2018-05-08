@@ -22,7 +22,9 @@ import org.junit.Test;
 
 import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.Carro_;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
+import com.algaworks.curso.jpa2.modelo.ModeloCarro_;
 
 public class ExemplosCriteria {
 	/*
@@ -497,6 +499,133 @@ public class ExemplosCriteria {
 			System.out.println(c.getPlaca() + " - " + c.getValorDiaria());
 		}
 		
+	}
+	
+	@Test
+	public void exemploSemMetaModel () {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Join<Carro, ModeloCarro> modelo = (Join) carro.fetch("modelo");
+		
+		criteriaQuery.select(carro);
+		criteriaQuery.where(builder.equal(modelo.get("descricao"),"Civic"));
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + "-" + c.getModelo().getDescricao());
+		}
+	}
+	
+	/**
+	 * METAMODEL
+	 * se continuarmos utilizando string para encontrar os atributos
+	 * se alterarmos o nome do atributo na classe, não será possivel 
+	 * seguir os erros ate as consultas, gerando erros somente em 
+	 * tempo de execução.
+	 * 
+	 * o metamodel resolve este problema para nos e nos ajuda a encontrar
+	 * possiveis erros de digitaçao ou alteraçoes seguras em nomes de 
+	 * atributos.
+	 * 
+	 * como utilizar o metamodel?
+	 * 1- no pom, adicionar a seguinte dependencia:
+	 * 	<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>1.3.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		2-após adicionar a dependencia, é necessário realizar algumas
+		configurações no pom:
+		
+		no plugin do maven compiler, adicionar uma tag com a informaçao para no compilar 
+		as classes geradas no metamodel:
+		no <artifactId>maven-compiler-plugin</artifactId>, adicionar:
+		
+		<compilerArgument>-proc:none</compilerArgument>
+		
+		isto evita que de erro de duplicaçao de codigo.
+		
+		3- os outros plugins sao:
+		<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.2.4</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+			                <outputDirectory>target/metamodel</outputDirectory>
+			            </configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.3</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/metamodel</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			4-executar o projeto com clean install do maven
+			5- na pasta metamodel, será criado uma copia das entidades presentes no projeto.
+			a diferença é que o final do nome contem um underline_
+			6- para podermos usar estas classes no projeto, temos que confifurar o projeto para
+			usar a pasta do metamodel, entao:
+				A- clicar com o botao direito no projeto e selecionar 'properties']
+				B- em 'java build path' clicar em 'add folder'
+				C- adicionar a pasta metamodel
+			7- agora podemos utilziar os atibutos criados automaticamente e cada vez que alterarmos 
+			a entidade e rodarmos o clean install, seremos avisados caso o sistema já utilize esse 
+			atributo.
+			
+			a vantagem de utilizar o metamodel é que, caso alteremos os atributos da entidade,
+			com o metamodel é possivel verificar logo possiveis erros devido a alteraçao dos 
+			nomes dos campos.
+		
+	 */
+	@Test
+	public void exemploComMetaModel () {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Carro> criteriaQuery = builder.createQuery(Carro.class);
+		
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		Join<Carro, ModeloCarro> modelo = (Join) carro.fetch(Carro_.modelo);//metamodel
+		
+		criteriaQuery.select(carro);
+		criteriaQuery.where(builder.equal(modelo.get(ModeloCarro_.descricao),"Civic"));//metamodel
+		
+		TypedQuery<Carro> query = manager.createQuery(criteriaQuery);
+		
+		List<Carro> carros = query.getResultList();
+		
+		for (Carro c : carros) {
+			System.out.println(c.getPlaca() + "-" + c.getModelo().getDescricao());
+		}
 	}
 	
 	@Test
