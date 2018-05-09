@@ -111,7 +111,19 @@ public class Carro {
 		this.acessorios = acessorios;
 	}
 
-	@OneToMany(mappedBy = "carro")//o mappedBy referencia o atributo java da outra classe que mapeou o carro
+	/*
+	 * => o mappedBy referencia o atributo java da outra classe que mapeou o carro
+	 * 
+	 * DELETE EM CASCADE
+	 * ao usar a anotacao 
+	 * @OneToMany(mappedBy = "carro", cascade = CascadeType.REMOVE)
+	 * quando removermos o carro, ira tambem remover todos os alugueis daquele carro.
+	 * 
+	 * como não é um comportamento que queremos nesta parte do codigo, na anotacao utilizada
+	 * nao tera a parte do REMOVE.
+	 * 
+	 */
+	@OneToMany(mappedBy = "carro")
 	public List<Aluguel> getAlugueis() {
 		return alugueis;
 	}

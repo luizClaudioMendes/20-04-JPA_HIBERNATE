@@ -146,11 +146,17 @@ public class ExemplosCascata {
 	
 	@Test
 	public void exclusaoEmCascata() {
-//		Carro carro = this.manager.find(Carro.class, 3L);
-//		
-//		this.manager.getTransaction().begin();
-//		this.manager.remove(carro);
-//		this.manager.getTransaction().commit();
+		Carro carro = this.manager.find(Carro.class, 13L);
+		try {
+			this.manager.getTransaction().begin();
+			System.out.println("APAGANDO O CARRO");
+			this.manager.remove(carro);
+			this.manager.getTransaction().commit();
+			System.out.println("CARRO APAGADO");
+		}catch (Exception e) {
+			System.out.println("ERRO AO APAGAR O CARRO");
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
