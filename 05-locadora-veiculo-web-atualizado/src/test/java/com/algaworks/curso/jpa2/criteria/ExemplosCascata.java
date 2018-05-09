@@ -26,16 +26,24 @@ public class ExemplosCascata {
 	
 	@BeforeClass
 	public static void init() {
-		factory = Persistence.createEntityManagerFactory("junitPU");
+		System.out.println("INICIANDO O INIT");
+		try {
+			factory = Persistence.createEntityManagerFactory("junitPU");
+		}catch (Throwable e) {
+			System.out.println("ERRO NO INIT");
+			e.printStackTrace();
+		}
 	}
 	
 	@Before
 	public void setUp() {
+		System.out.println("INICIANDO O SETUP");
 		this.manager = factory.createEntityManager();
 	}
 	
 	@After
 	public void tearDown() {
+		System.out.println("INICIANDO O TEARDOWN");
 		this.manager.close();
 	}
 	
@@ -60,14 +68,66 @@ public class ExemplosCascata {
 		 */
 		System.out.println("CRIANDO NOVO CARRO");
 		Carro carro = new Carro();
-		carro.setCor("Preto");
-		carro.setPlaca("AAA-1111");
+		carro.setCor("Azul");
+		carro.setPlaca("CCC-0123");
 		
 		System.out.println("CRIANDO NOVO MODELO DE CARRO");
 		ModeloCarro modelo = new ModeloCarro();
 		modelo.setCategoria(Categoria.ESPORTIVO);
 		modelo.setDescricao("Ferrari");
 		carro.setModelo(modelo);
+		
+		System.out.println("INICIANDO TRY");
+		try {
+			
+			this.manager.getTransaction().begin();
+			System.out.println("PERSISTINDO");
+			this.manager.persist(carro);
+			this.manager.getTransaction().commit();
+		}catch (Exception e) {
+			System.out.println("ERRO!");
+			e.printStackTrace();
+		}
+		
+		System.out.println("CARRO PERSISTIDO!");
+	}
+	
+	@Test
+	public void testeDeTeste() {
+		System.out.println("TESTE DE TESTE");
+	}
+	
+	@Test
+	public void exercicio1() {
+		/*
+		 * exercicio do capitulo 9.2
+		 */
+		System.out.println("CRIANDO NOVO CARRO");
+		Carro carro = new Carro();
+		carro.setCor("Azul");
+		carro.setPlaca("CCC-0124");
+		
+		System.out.println("CRIANDO NOVO ACESSORIO");
+		Acessorio ace0 = new Acessorio();
+		ace0.setDescricao("aquecedor de bancos");
+		
+		Acessorio ace1 = new Acessorio();
+		ace1.setDescricao("espelhos retrateis");
+		
+		Acessorio ace2 = new Acessorio();
+		ace2.setDescricao("Camera de re");
+		
+		Acessorio ace3 = new Acessorio();
+		ace3.setDescricao("sensor de estacionamento");
+		
+		List<Acessorio> listaAcessorios = new ArrayList<>(0);
+		
+		listaAcessorios.add(ace0);
+		listaAcessorios.add(ace1);
+		listaAcessorios.add(ace2);
+		listaAcessorios.add(ace3);
+		
+		carro.setAcessorios(listaAcessorios);
 		
 		System.out.println("INICIANDO TRY");
 		try {
