@@ -33,7 +33,6 @@ public class PesquisaCarroBean implements Serializable {
 		lazyCarros = new LazyCarroDataModel(carroDAO); //utilizado na paginacao
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void excluir() {
 		try {
 			carroDAO.excluir(carroSelecionado);

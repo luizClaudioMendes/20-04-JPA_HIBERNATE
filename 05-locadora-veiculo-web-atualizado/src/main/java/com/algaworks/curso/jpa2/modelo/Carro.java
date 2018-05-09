@@ -97,6 +97,10 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
+	/*
+	 * para exclusoes em relacionamentos many to many nao é necessario nenhuma anotaçao.
+	 * desta forma, ira apenas excluir o carro e o relacionamento entre carro e acessorio, nao apagando o acessorio, que pode estar sendo utilizado por outro carro.
+	 */
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))//name = nome da tabela, joinColumns mapeia o nome das primary keys de Carro e inverseJoinColumns de acessorios
 	public List<Acessorio> getAcessorios() {
