@@ -122,6 +122,19 @@ public class Carro {
 	 * como não é um comportamento que queremos nesta parte do codigo, na anotacao utilizada
 	 * nao tera a parte do REMOVE.
 	 * 
+	 * DELETE DE ORFAOS
+	 * 
+	 * @OneToMany(mappedBy = "carro", cascade = CascadeType.PERSIST, orphanRemoval = true)
+	 * quando por exemplo, editamos uma lista em um objeto, exemplo um carro, e editamos a lista de aluguéis, excluindo um aluguel, este aluguel que ficou excluído da lista ficou órfão.
+		neste caso, precisamos adicionar uma outra anotação:
+		@OneToMany(mappedBy = "carro", cascade = CascadeType.PERSIST, orphanRemoval = true)
+
+		então a sequencia é a seguinte:
+		buscamos um carro no banco e editamos a lista de aluguéis (removendo o primeiro por exemplo).
+		logo a seguir, persistimos o carro.
+		com essa ação queremos que o carro seja salvo com os alugueis restantes (sem o que foi removido).
+		para que isso aconteça a anotação orphanRemoval = true tem que estar presente.
+
 	 */
 	@OneToMany(mappedBy = "carro")
 	public List<Aluguel> getAlugueis() {

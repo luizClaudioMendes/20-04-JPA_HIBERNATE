@@ -161,11 +161,22 @@ public class ExemplosCascata {
 	
 	@Test
 	public void exclusaoDeObjetosOrfaos() {
-//		Carro carro = this.manager.find(Carro.class, 6L);
-//		
-//		this.manager.getTransaction().begin();
-//		carro.getAlugueis().remove(0);
-//		this.manager.getTransaction().commit();
+		Carro carro = this.manager.find(Carro.class, 12L);
+		
+		for (Aluguel aluguel : carro.getAlugueis()) {
+			System.out.println("Alugueis:" + aluguel.getCodigo());
+		}
+		
+		
+		System.out.println("REMOVENDO O ALUGUEL :"+carro.getAlugueis().get(0).getCodigo());
+		
+		this.manager.getTransaction().begin();
+		carro.getAlugueis().remove(0);
+		this.manager.getTransaction().commit();
+		
+		for (Aluguel aluguel : carro.getAlugueis()) {
+			System.out.println("Alugueis PERSISTIDOS:" + aluguel.getCodigo());
+		}
 	}
 }
 
