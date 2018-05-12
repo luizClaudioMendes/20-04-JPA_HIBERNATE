@@ -33,12 +33,15 @@ public class ExemploChaveComposta {
 		entitymanager.persist(v);
 		entitymanager.getTransaction().commit();
 		
+		
+		/*
+		 * este veiculo ja havia sido criado anteriormente na primeira 
+		 * execuçao do metodo.
+		 */
 		VeiculoId codigo = new VeiculoId("ABC-1111", "São Paulo");		
 		Veiculo v2 = entitymanager.find(Veiculo.class, codigo);
 		
 		System.out.println("VEiculo :" + v2.getCodigo().getPlaca());
-		
-		
 
 	}
 
