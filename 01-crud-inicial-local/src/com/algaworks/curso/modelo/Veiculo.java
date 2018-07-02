@@ -3,6 +3,7 @@ package com.algaworks.curso.modelo;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 public class Veiculo {
@@ -84,6 +85,11 @@ public class Veiculo {
 
 	public void setProp(Proprietario prop) {
 		this.prop = prop;
+	}
+	
+	@Transient
+	public String getDescricao() {
+		return getFabricante() + " : " + getCodigo().getPlaca();
 	}
 	
 
