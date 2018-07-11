@@ -16,11 +16,13 @@
     
     	<h1>#{cadastroCarroBean.editando ? 'Edição carro' : 'Novo carro'}</h1>
     	
+    	<!-- importante para o upload da foto  enctype="multipart/form-data"-->
     	<h:form id="frmCadastro" enctype="multipart/form-data">
     		<p:messages id="messages" autoUpdate="true" closable="true" />
     	
 	    	<p:toolbar style="margin-top: 20px">
 	    		<p:toolbarGroup>
+	    		<!-- importante para o upload da foto  ajax="false"-->
 	    			<p:commandButton value="Salvar" id="botaoSalvar" action="#{cadastroCarroBean.salvar}" update="frmCadastro" ajax="false" />
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
@@ -48,14 +50,14 @@
 			    <p:outputLabel value="Valor diária" for="valorDiaria"/>
 			    <p:inputText id="valorDiaria" size="20" maxlength="20" value="#{cadastroCarroBean.carro.valorDiaria}"/>
 			    
-<!-- 			    <p:outputLabel value="Foto" for="foto"/> -->
-<!-- 			    <h:panelGroup> -->
-<!-- 			    	<p:commandButton rendered="#{cadastroCarroBean.carro.hasFoto()}" icon="ui-icon-extlink" title="Imagem"  -->
-<!-- 			    			process="@this" oncomplete="PF('mostraImagem').show()" update=":frmCadastro:mostraImagemDialog"> -->
-<!-- 						<f:setPropertyActionListener target="#{fotoCarroBean.carroSelecionado}" value="#{cadastroCarroBean.carro}" /> -->
-<!-- 					</p:commandButton> -->
-<!-- 			    	<p:fileUpload id="foto" value="#{cadastroCarroBean.fotoCarro}" mode="simple"/> -->
-<!-- 			    </h:panelGroup> -->
+			    <p:outputLabel value="Foto" for="foto"/>
+			    <h:panelGroup>
+			    	<p:commandButton rendered="#{cadastroCarroBean.carro.hasFoto()}" icon="ui-icon-extlink" title="Imagem" 
+			    			process="@this" oncomplete="PF('mostraImagem').show()" update=":frmCadastro:mostraImagemDialog">
+						<f:setPropertyActionListener target="#{fotoCarroBean.carroSelecionado}" value="#{cadastroCarroBean.carro}" />
+					</p:commandButton>
+			    	<p:fileUpload id="foto" value="#{cadastroCarroBean.fotoCarro}" mode="simple"/>
+			    </h:panelGroup>
 			    
 			    <p:outputLabel value="Acessórios" for="acessorios"/>
 				<p:selectManyCheckbox id="acessorios" styleClass="many-checkbox" 

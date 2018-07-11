@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Carro {
 	private Date dataCriacao;
 	private Date dataModificacao;
 
-//	private byte[] foto;
+	private byte[] foto;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -173,18 +174,19 @@ public class Carro {
 		}
 	}
 
-//	@Lob
-//	public byte[] getFoto() {
-//		return this.foto;
-//	}
+	@Lob //anotaçao importante para upload da foto
+	@Column(name="foto_carro")
+	public byte[] getFoto() {
+		return this.foto;
+	}
 
-//	public void setFoto(byte[] foto) {
-//		this.foto = foto;
-//	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
 	
-//	public boolean hasFoto() {
-//		return this.foto != null && this.foto.length > 0;
-//	}
+	public boolean hasFoto() {
+		return this.foto != null && this.foto.length > 0;
+	}
 
 	@Override
 	public int hashCode() {

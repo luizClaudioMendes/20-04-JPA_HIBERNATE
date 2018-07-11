@@ -210,13 +210,14 @@
 			<scope>compile</scope>
 		</dependency>
 	
+<!-- 	DEPENDENCIA NECESSARIA PARA REALIZAR O UPLOAD DE ARQUIVOS -->
 		<dependency>
    			<groupId>commons-fileupload</groupId>
     		<artifactId>commons-fileupload</artifactId>
     		<version>${commons-fileupload.version}</version>
     		<scope>compile</scope>
 		</dependency>
-		
+<!-- 	FIM DEPENDENCIA NECESSARIA PARA REALIZAR O UPLOAD DE ARQUIVOS -->		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

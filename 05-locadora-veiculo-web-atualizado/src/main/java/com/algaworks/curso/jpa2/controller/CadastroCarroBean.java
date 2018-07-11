@@ -40,6 +40,7 @@ public class CadastroCarroBean implements Serializable {
 	@Inject
 	private ModeloCarroDAO modeloCarroDAO;
 
+//	atributo criado para realizar o upload da foto do carro
 	private UploadedFile fotoCarro;
 
 	@Inject
@@ -60,10 +61,10 @@ public class CadastroCarroBean implements Serializable {
 
 	public void salvar() {
 		try {
-//			if (this.fotoCarro != null && this.fotoCarro.getContents() != null 
-//					&& this.fotoCarro.getContents().length > 0) {
-//				this.carro.setFoto(this.fotoCarro.getContents());
-//			}
+			if (this.fotoCarro != null && this.fotoCarro.getContents() != null 
+					&& this.fotoCarro.getContents().length > 0) {
+				this.carro.setFoto(this.fotoCarro.getContents());//o getContents é o que retorna o array de bytes
+			}
 
 			this.cadastroCarroService.salvar(carro);
 			facesMessages.info("Carro salvo com sucesso.");
