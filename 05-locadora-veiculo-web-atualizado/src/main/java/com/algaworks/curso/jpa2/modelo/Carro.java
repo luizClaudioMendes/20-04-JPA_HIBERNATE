@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,6 +32,7 @@ import javax.persistence.TemporalType;
 		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo"),
 		@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
 				+ " where c.codigo = :codigo") })
+@Table(name="tb_carro", schema="teste")
 public class Carro {
 
 	private Long codigo;
