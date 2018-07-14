@@ -177,7 +177,7 @@ public class Carro {
 	}
 
 	@Lob //anotaçao importante para upload da foto
-	@Column(name="foto_carro")
+	@Column(name="foto_carro", nullable=true, unique=false, insertable=true, updatable=true) // name="foto_carro", nullable=true, unique=false, insertable=true, updatable=true sao parametros utilizados na configuracao da coluna no bd
 	public byte[] getFoto() {
 		return this.foto;
 	}
