@@ -68,4 +68,8 @@ public class CarroDAO implements Serializable {
 		return manager.createQuery("select count(c) from Carro c", Long.class).getSingleResult(); //utilizado na paginacao
 	}
 	
+	public void setEntityManager(EntityManager em) {
+		this.manager = em;
+	}
+	
 }

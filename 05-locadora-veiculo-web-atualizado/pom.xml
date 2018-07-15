@@ -38,6 +38,9 @@
 		<!-- JUnit -->
 		<junit.version>4.11</junit.version>
 		
+		<!-- DBUnit -->
+		<dbunit.version>2.4.9</dbunit.version>
+		
 		<!-- Commons Fileupload -->
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
 		
@@ -193,11 +196,19 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		
+<!-- 		NECESSARIO PARA O DBUNIT -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+<!-- 		FIM NECESSARIO PARA O DBUNIT -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -208,6 +219,13 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 			<scope>compile</scope>
+		</dependency>
+<!-- 		jIntegrity -->
+		<dependency>
+			<groupId>com.jintegrity</groupId>
+			<artifactId>jintegrity</artifactId>
+			<version>0.1.2</version>
+			<scope>test</scope>
 		</dependency>
 	
 <!-- 	DEPENDENCIA NECESSARIA PARA REALIZAR O UPLOAD DE ARQUIVOS -->
@@ -225,6 +243,7 @@
 			<scope>compile</scope>
 		</dependency>
 		
+<!-- 		JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -232,6 +251,13 @@
 			<scope>test</scope>
 		</dependency>
 		
+<!-- 		 DBUNIT -->
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>${dbunit.version}</version>
+			<scope>test</scope>
+		</dependency>
 <!-- 		METAMODEL -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
