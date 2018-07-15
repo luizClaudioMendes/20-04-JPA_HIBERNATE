@@ -20,9 +20,11 @@ public class CadastroAcessorioService implements Serializable {
 	@Transactional
 	public void salvar(Acessorio acessorio) throws NegocioException {
 		
-		if (StringUtils.isBlank(acessorio.getDescricao())) {
-			throw new NegocioException("A descrição do acessório é obrigatório");
-		}
+//		DESNECESSARIO APOS IMPLEMENTACAO DO BEAN VALIDATION
+//		if (StringUtils.isBlank(acessorio.getDescricao())) {
+//			throw new NegocioException("A descrição do acessório é obrigatório");
+//		}
+		
 		
 		this.acessorioDAO.salvar(acessorio);
 	}

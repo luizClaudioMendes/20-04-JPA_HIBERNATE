@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 public class Acessorio {
@@ -21,6 +27,21 @@ public class Acessorio {
 		this.codigo = codigo;
 	}
 
+	/*
+	 * exemplos:
+	 * @NotNull
+    private String manufacturer;
+
+    @NotNull
+    @Size(min = 2, max = 14)
+    private String licensePlate;
+
+    @Min(2)
+    private int seatCount;
+
+	existem varios outros, só procurar por anotacoes com javax.validation.constraints.
+	 */
+	@NotEmpty(message="A descrição deve ser informada!")
 	public String getDescricao() {
 		return descricao;
 	}
