@@ -30,16 +30,16 @@ public class Acessorio {
 	/*
 	 * exemplos:
 	 * @NotNull
-    private String manufacturer;
-
-    @NotNull
-    @Size(min = 2, max = 14)
-    private String licensePlate;
-
-    @Min(2)
-    private int seatCount;
-
-	existem varios outros, só procurar por anotacoes com javax.validation.constraints.
+     * private String manufacturer;
+     * 
+     * @NotNull
+     * @Size(min = 2, max = 14)
+     * private String licensePlate;
+     * 
+     * @Min(2)
+     * private int seatCount;
+     * 
+	 * existem varios outros, só procurar por anotacoes com javax.validation.constraints.
 	 */
 	@NotEmpty(message="A descrição deve ser informada!")
 	public String getDescricao() {
