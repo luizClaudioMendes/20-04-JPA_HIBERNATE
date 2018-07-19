@@ -40,10 +40,16 @@ public class PesquisaAluguelBean implements Serializable {
 		this.alugueis = new ArrayList<>();
 	}
 	
+	/**
+	 * metodo utilizando criteria do JPA
+	 */
 	public void pesquisar() {
 		this.alugueis = aluguelDAO.buscarPorDataDeEntregaEModeloCarro(this.aluguel.getDataEntrega(), this.carro.getModelo());
 	}
 	
+	/**
+	 * metodo utilizando criteria do hibernate
+	 */
 	public void pesquisarCriteria() {
 		this.alugueis = aluguelDAO.buscarPorDataDeEntregaEModeloCarroCriteria(this.aluguel.getDataEntrega(), this.carro.getModelo());
 	}

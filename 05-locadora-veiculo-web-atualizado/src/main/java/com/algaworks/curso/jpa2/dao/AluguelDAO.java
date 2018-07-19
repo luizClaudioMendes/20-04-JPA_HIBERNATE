@@ -99,24 +99,35 @@ public class AluguelDAO implements Serializable {
 		return query.getResultList();
 	}
 	
+	
+	/**
+	 * metodo para exemplificar a crição da criteria do hibernate.
+	 * 
+	 * @param dataEntrega
+	 * @param modelo
+	 * @return
+	 */
+	
 	@SuppressWarnings("unchecked")
-	public List<Aluguel> buscarPorDataDeEntregaEModeloCarroCriteria(Date dataEntrega,
-			ModeloCarro modelo) {
+	public List<Aluguel> buscarPorDataDeEntregaEModeloCarroCriteria(Date dataEntrega, ModeloCarro modelo) {
 		
-		Session session = this.manager.unwrap(Session.class);
-		Criteria criteria = session.createCriteria(Aluguel.class);
+		/**
+		 * para começar, a criteria do hibernate criada pela session do hibernate.
+		 */
+		Session session = this.manager.unwrap(Session.class); // o entity manager contem a session do hibernate. utilizando o unwrap, agente consegue obter a session do hibernate.
+		Criteria criteria = session.createCriteria(Aluguel.class); // criamos a criteria do hibernate
 		
 		if (dataEntrega != null) {
-			criteria.add(Restrictions.between("dataEntrega"
-					, geraDataInicial(dataEntrega), geraDataFinal(dataEntrega)));
+			criteria.add(Restrictions.between("dataEntrega", geraDataInicial(dataEntrega), geraDataFinal(dataEntrega))); // restrictions sao as clausulas where no select
+//			criteria.add(Restrictions.between(NOME_CAMPO_JAVA, PRIMEIRA_DATA, SEGUNDA_DATA));
 		}
 		
 		if (modelo != null) {
-			criteria.createAlias("carro", "c");
-			criteria.add(Restrictions.eq("c.modelo", modelo));
+			criteria.createAlias("carro", "c"); // como estamos em aluguel, e aluguel tem carro e carro é quem tem modelo, temos que criar um alias para carro, para podermos acessar o modelo
+			criteria.add(Restrictions.eq("c.modelo", modelo)); //acessando modelo a partir do alias
 		}
 		
-		return criteria.list();
+		return criteria.list(); // se somente utilizarmos esta linha é equivalente a select * from
 	}
 	
 	private Date geraDataInicial(Date dataEntrega) {

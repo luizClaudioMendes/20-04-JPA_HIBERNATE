@@ -32,7 +32,7 @@ import javax.persistence.TemporalType;
 		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo"),
 		@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
 				+ " where c.codigo = :codigo") })
-@Table(name="tb_carro", schema="teste")
+@Table(name="tb_carro", schema="locadora")
 public class Carro {
 
 	private Long codigo;
