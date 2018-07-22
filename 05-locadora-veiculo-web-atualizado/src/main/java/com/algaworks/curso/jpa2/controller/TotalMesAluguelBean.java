@@ -18,20 +18,26 @@ public class TotalMesAluguelBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+//	ENUM DOS MESES
 	private enum Meses {
 		JANEIRO, FEVEREIRO, MARÇO, ABRIL, MAIO, JUNHO, JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO
 	};
 
+//	mes selecionado na tela
 	private Meses mesSelecionado;
 
+//	resultado da conta do total do mes
 	private BigDecimal totalDoMes;
 
+	
 	private List<Aluguel> alugueis;
 
 	@Inject
 	private AluguelDAO aluguelDAO;
 
+	
 	public void buscarTotalAlugueisNoMes() {
+//		porque o enum meses é temporario (somente para demonstraçao) é necessário buscar a posicao do enum e como ele começa com 0, acrescentar +1
 		this.totalDoMes = this.aluguelDAO.calcularTotalDoMesDe(this.mesSelecionado.ordinal() + 1);
 	}
 
@@ -47,6 +53,7 @@ public class TotalMesAluguelBean implements Serializable {
 		this.mesSelecionado = mesSelecionado;
 	}
 
+//	retorna como lista o array de meses
 	public List<Meses> getMeses() {
 		return Arrays.asList(Meses.values());
 	}

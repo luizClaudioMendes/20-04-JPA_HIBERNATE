@@ -152,9 +152,15 @@ public class AluguelDAO implements Serializable {
 
 	public BigDecimal calcularTotalDoMesDe(int mes) {
 		Session session = this.manager.unwrap(Session.class);
-		Criteria criteria = session.createCriteria(Aluguel.class);
+		Criteria criteria = session.createCriteria(Aluguel.class); //cria uma criteria normal
 		
-		criteria.setProjection(Projections.sum("valorTotal"));
+		/*projections sao utilizadas quando nao queremos a etidade
+		 * toda, somente um pedaço dela (colunas) ou o retorno de uma função
+		 * do SQL, como é o caso desta.
+		 */
+		criteria.setProjection(Projections.sum("valorTotal")); //queremos que retorne somente uma coluna com o resultado da soma
+		//restrição utilizando SQL nativo, passando uma function que encontra todas as datas com o mes passado
+//		criteria.add(Restrictions.sqlRestriction("SQL_function = ?", nome do parametro para utilizar, tipo_do_parametro));
 		criteria.add(Restrictions.sqlRestriction("month(dataPedido) = ?", mes, StandardBasicTypes.INTEGER));
 		
 		return (BigDecimal) criteria.uniqueResult();
