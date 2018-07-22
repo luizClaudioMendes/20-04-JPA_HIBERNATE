@@ -21,11 +21,11 @@ public class FotoCarroBean implements Serializable {
 	
 	public StreamedContent getFoto() {
 		DefaultStreamedContent content = null;
-//		if (this.carroSelecionado != null && this.carroSelecionado.getFoto() != null
-//				&& this.carroSelecionado.getFoto().length > 0) {
-//			byte[] imagem = this.carroSelecionado.getFoto();
-//			content = new DefaultStreamedContent(new ByteArrayInputStream(imagem), "image/jpg", "carro.jpg");
-//		}
+		if (this.carroSelecionado != null && this.carroSelecionado.getFoto() != null
+				&& this.carroSelecionado.getFoto().length > 0) {
+			byte[] imagem = this.carroSelecionado.getFoto();
+			content = new DefaultStreamedContent(new ByteArrayInputStream(imagem), "image/jpg", "carro.jpg");
+		}
 		
 		return content;
 	}
