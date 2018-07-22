@@ -96,10 +96,6 @@ public class SimulandoLazyLoadingException {
 		for (Acessorio acessorio : c.getAcessorios()) {
 			System.out.println(acessorio.getDescricao());
 		}
-		
-		
-		
-		
 	
 	}
 	
