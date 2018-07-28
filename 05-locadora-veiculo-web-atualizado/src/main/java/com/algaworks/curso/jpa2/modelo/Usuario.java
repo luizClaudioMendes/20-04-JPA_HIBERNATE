@@ -4,15 +4,39 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
+import com.algaworks.curso.jpa2.relatorio.AlertasPorUsuario;
 import com.algaworks.curso.jpa2.util.JPAConverters.LocalDateConverter;
 
+@NamedNativeQuery(name="alertasPorUsuario",
+	query="select u.nome as nome, " + 
+			" count(a.codigo) as totalAlertas " + 
+			" from tb_usuario u, tb_acesso a " + 
+			" where u.codigo = a.usuario " + 
+			" group by u.nome",
+			resultSetMapping="alertasPorUsuarioMapping"
+		)
+@SqlResultSetMapping(name="alertasPorUsuarioMapping", 
+		classes= {
+				@ConstructorResult(
+						targetClass=AlertasPorUsuario.class, 
+						columns= {
+							@ColumnResult(name="nome"),
+							@ColumnResult(name="totalAlertas")
+						}
+				)
+		}
+	)
 @Entity
 @Table(name="tb_usuario", schema="locadora")
 public class Usuario implements Serializable{
