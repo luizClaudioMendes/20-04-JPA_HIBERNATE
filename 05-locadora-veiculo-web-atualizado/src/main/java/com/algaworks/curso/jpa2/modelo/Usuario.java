@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
@@ -38,7 +39,12 @@ import com.algaworks.curso.jpa2.util.JPAConverters.LocalDateConverter;
 		}
 	)
 @Entity
-@Table(name="tb_usuario", schema="locadora")
+@Table(name="tb_usuario", schema="locadora", 
+	indexes= { // criação de indices para melhora da performance de consultas
+			@Index(columnList="nome", unique=true),//criação do indice, colocando o nome com a constraint de ser unico tambem
+			@Index(columnList="nome, dt_nasc") // criaçao do indice composto, com nome e data de nascimento
+			}
+)
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;

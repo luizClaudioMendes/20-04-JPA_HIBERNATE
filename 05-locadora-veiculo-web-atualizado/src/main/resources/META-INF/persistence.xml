@@ -20,23 +20,23 @@
 		<non-jta-data-source>java:comp/env/jdbc/locadoraDB</non-jta-data-source>
 		<properties>
 <!-- 		NÃO UTILIZAR ESTA PROPRIEDADE EM AMBIENTE DE PRODUCAO -->
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" /> 
+			<property name="javax.persistence.schema-generation.database.action" value="none" /> 
 <!-- 			POSSIVEIS VALORES = none, create, drop-and-create, drop -->
 <!-- 			COM A PROPERTY ACIMA DO JPA 2.1, A PROPERTY ABAIXO DEIXA DE SER NECESSARIA. ATENÇÃO: SOMENTE PARA JPA 2.1 -->
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="update"/> -->
 
 <!-- POSSIBILIDADE DE ADICIONAR SCRIOPS PARA CRIAR TABELAS ALEM DAS DO SISTEMA (METADATA), INDO EM UM SCRIPT PARA CRIAR -->
 <!-- POSSIVEIS VALORES: metadata, metadata-then-script, script-then-metadata, script -->
- 			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script" /> 
- 			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/criar-tabelas.sql"/> 
+<!--  			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script" />  -->
+<!--  			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/criar-tabelas.sql"/>  -->
 
 
- 			<property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script" /> 
+<!--  			<property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script" />  -->
 <!-- POSSIVEIS VALORES: metadata, metadata-then-script, script-then-metadata, script -->
- 			<property name="javax.persistence.schema-generation.drop-script-source"  value="META-INF/sql/dropar-tabelas.sql"/> 
+<!--  			<property name="javax.persistence.schema-generation.drop-script-source"  value="META-INF/sql/dropar-tabelas.sql"/>  -->
  			
  			
- 			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/carregar-dados.sql"/> 
+<!--  			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/carregar-dados.sql"/>  -->
 			
 		
 			<property name="hibernate.format_sql" value="true"/>
@@ -66,16 +66,16 @@
 
 <!-- POSSIBILIDADE DE ADICIONAR SCRIOPS PARA CRIAR TABELAS ALEM DAS DO SISTEMA (METADATA), INDO EM UM SCRIPT PARA CRIAR -->
 <!-- POSSIVEIS VALORES: metadata, metadata-then-script, script-then-metadata, script -->
- 			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script" /> 
- 			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/criar-tabelas.sql"/> 
+<!--  			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script" />  -->
+<!--  			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/criar-tabelas.sql"/>  -->
 
 
- 			<property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script" /> 
+<!--  			<property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script" />  -->
 <!-- POSSIVEIS VALORES: metadata, metadata-then-script, script-then-metadata, script -->
- 			<property name="javax.persistence.schema-generation.drop-script-source"  value="META-INF/sql/dropar-tabelas.sql"/> 
+<!--  			<property name="javax.persistence.schema-generation.drop-script-source"  value="META-INF/sql/dropar-tabelas.sql"/>  -->
  			
  			
- 			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/carregar-dados.sql"/> 
+<!--  			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/carregar-dados.sql"/>  -->
 			
 			
 			
