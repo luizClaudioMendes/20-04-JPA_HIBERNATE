@@ -25,3 +25,14 @@
   	</root>
 
 </log4j:configuration>
+
+<!-- Níveis de logs -->
+<!-- Há diversos níveis de log disponíveis, inclusive a possibilidade de se criar os próprios níveis (o que não é muito recomendado). Os que vem por padrão no Log4J são: -->
+
+<!-- TRACE -->
+<!-- DEBUG -->
+<!-- INFO -->
+<!-- WARN -->
+<!-- ERROR -->
+<!-- FATAL -->
+<!-- A ideia é representar mensagens de log da menor gravidade para a maior gravidade. Há métodos de logging para cada um desses níveis. -->
