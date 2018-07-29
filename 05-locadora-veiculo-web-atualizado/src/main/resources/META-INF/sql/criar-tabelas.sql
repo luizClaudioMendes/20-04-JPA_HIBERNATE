@@ -1,0 +1,2 @@
+create table if not exists locadora.TESTE_SCRIPT_endereco (codigo bigint primary key auto_increment, rua varchar(100));
+create table if not exists locadora.TESTE_SCRIPT_endereco_PARA_DELETAR (codigo bigint primary key auto_increment, rua varchar(100));

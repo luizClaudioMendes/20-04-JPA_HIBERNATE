@@ -1,0 +1,1 @@
+drop table if exists locadora.TESTE_SCRIPT_endereco_PARA_DELETAR;
