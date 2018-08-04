@@ -32,6 +32,9 @@
 			<div style="float: right; margin-right: 110px">
 				<h:form style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
+					<p:submenu label="Pesquisa">
+						<p:menuitem value="Cidades" outcome="/cidade/PesquisaCidades.xhtml"/>
+					</p:submenu>
 						<p:submenu label="Cadastros">
 							<p:menuitem value="Fabricante" outcome="/fabricante/PesquisaFabricantes.xhtml"/>
 							<p:menuitem value="Modelo Carro" outcome="/modeloCarro/PesquisaModeloCarro.xhtml" />
@@ -40,6 +43,9 @@
 							<p:separator/>
 							<p:menuitem value="Funcionário" outcome="/funcionario/PesquisaFuncionarios.xhtml"/>
 							<p:menuitem value="Motorista" outcome="/motorista/PesquisaMotoristas.xhtml"/>
+							<p:separator/>
+							<p:menuitem value="Estado" outcome="/estados/CadastroEstado.xhtml"/>
+							<p:menuitem value="Cidade" outcome="/cidade/CadastroCidade.xhtml"/>
 						</p:submenu>
 						<p:menuitem value="Novo Aluguel" outcome="/aluguel/NovoAluguel.xhtml"/>
 						<p:submenu label="Relatórios">

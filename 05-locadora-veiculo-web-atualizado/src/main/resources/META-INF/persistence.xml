@@ -23,7 +23,7 @@
 			<property name="javax.persistence.schema-generation.database.action" value="none" /> 
 <!-- 			POSSIVEIS VALORES = none, create, drop-and-create, drop -->
 <!-- 			COM A PROPERTY ACIMA DO JPA 2.1, A PROPERTY ABAIXO DEIXA DE SER NECESSARIA. ATENÇÃO: SOMENTE PARA JPA 2.1 -->
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update"/> -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 
 <!-- POSSIBILIDADE DE ADICIONAR SCRIOPS PARA CRIAR TABELAS ALEM DAS DO SISTEMA (METADATA), INDO EM UM SCRIPT PARA CRIAR -->
 <!-- POSSIVEIS VALORES: metadata, metadata-then-script, script-then-metadata, script -->
@@ -45,6 +45,8 @@
 			
 			<property name="hibernate.default_schema" value="locadora" />
 			
+<!-- 			CACHE // NAO RECOMENDADO PARA PRODUçÂO -->
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.testing.cache.CachingRegionFactory"/>
 		</properties>
 	</persistence-unit>
 	

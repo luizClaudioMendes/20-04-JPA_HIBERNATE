@@ -141,34 +141,35 @@
 	</build>
 
 	<dependencies>
+		<!-- OmniFaces (utilitarios para JSF) -->
 		<dependency>
 		    <groupId>org.omnifaces</groupId>
 		    <artifactId>omnifaces</artifactId>
 		    <version>${omnifaces.version}</version>
 		    <scope>compile</scope>
 		</dependency>
-	
+		<!-- PrimeFaces (Biblioteca de componentes) -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>${primefaces.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
+		<!-- Mojarra (Implementação JSF 2) -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>${javax.faces.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+		<!-- Implementação de EntityManager da JPA -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+		<!-- Weld (implementação do CDI) -->
         <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
             <artifactId>weld-servlet</artifactId>
@@ -182,7 +183,7 @@
 		    <version>${jandex.version}</version>
 		    <scope>compile</scope>
 		</dependency>
-		
+		<!-- Driver JDBC do MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -214,6 +215,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -273,6 +275,15 @@
 			<version>5.0.1.Final</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Hibernate Testing --> 
+  		<dependency> 
+  			<groupId>org.hibernate</groupId> 
+  			<artifactId>hibernate-testing</artifactId> 
+  			<version>4.3.5.Final</version> 
+  			<scope>compile</scope> 
+  		</dependency> 
+		
 	</dependencies>
 
 </project>
