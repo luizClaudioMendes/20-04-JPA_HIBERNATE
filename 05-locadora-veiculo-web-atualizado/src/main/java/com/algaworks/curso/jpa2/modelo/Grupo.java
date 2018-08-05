@@ -1,16 +1,25 @@
 package com.algaworks.curso.jpa2.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-public class Acessorio {
+@Table(name = "tb_grupo")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Grupo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
-	private String descricao;
+	private String nome;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,27 +31,12 @@ public class Acessorio {
 		this.codigo = codigo;
 	}
 
-	/*
-	 * exemplos:
-	 * @NotNull
-     * private String manufacturer;
-     * 
-     * @NotNull
-     * @Size(min = 2, max = 14)
-     * private String licensePlate;
-     * 
-     * @Min(2)
-     * private int seatCount;
-     * 
-	 * existem varios outros, só procurar por anotacoes com javax.validation.constraints.
-	 */
-	@NotEmpty(message="A descrição deve ser informada!")
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
@@ -61,7 +55,7 @@ public class Acessorio {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Acessorio other = (Acessorio) obj;
+		Grupo other = (Grupo) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -69,5 +63,6 @@ public class Acessorio {
 			return false;
 		return true;
 	}
+
 
 }
