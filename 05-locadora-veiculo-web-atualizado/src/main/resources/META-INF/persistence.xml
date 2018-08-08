@@ -47,6 +47,12 @@
 			
 <!-- 			CACHE // NAO RECOMENDADO PARA PRODUçÂO -->
 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.testing.cache.CachingRegionFactory"/>
+			
+<!-- 			cache de 2o nivel -->
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			
+<!-- 			CACHE de queries -->
+			<property name="hibernate.cache.use_query_cache" value="true"/>
 		</properties>
 	</persistence-unit>
 	
