@@ -17,6 +17,7 @@
 	
 	<!-- controle de transacao por RESOURCE_LOCAL -->
 	<persistence-unit name="locadoraVeiculoPU" transaction-type="RESOURCE_LOCAL">
+<!-- 		NAO JTA DATASOURCE -->
 		<non-jta-data-source>java:comp/env/jdbc/locadoraDB</non-jta-data-source>
 		<properties>
 <!-- 		NÃO UTILIZAR ESTA PROPRIEDADE EM AMBIENTE DE PRODUCAO -->

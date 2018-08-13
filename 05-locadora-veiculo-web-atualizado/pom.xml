@@ -184,12 +184,13 @@
 		    <scope>compile</scope>
 		</dependency>
 		<!-- Driver JDBC do MySQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connector.version}</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- 		por causa do datasource ja definir o driver do mysql, pode-se retirar isto -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>mysql</groupId> -->
+<!-- 			<artifactId>mysql-connector-java</artifactId> -->
+<!-- 			<version>${mysql.connector.version}</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 		
 		<!-- Logging -->
 		<dependency>

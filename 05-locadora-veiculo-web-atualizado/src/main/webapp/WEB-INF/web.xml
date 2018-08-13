@@ -9,6 +9,8 @@
 		<welcome-file>Home.xhtml</welcome-file>
 	</welcome-file-list>
 	
+<!-- 	datasource information -->
+<!-- para que no persistence.xml possa enxergar jdbc/locadoraDB -->
 	<resource-ref>
 		<description>DB Connection</description>
 		<res-ref-name>jdbc/locadoraDB</res-ref-name>
