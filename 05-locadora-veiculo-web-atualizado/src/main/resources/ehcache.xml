@@ -1,0 +1,23 @@
+<ehcache>
+	<diskStore path="E:\19-CACHE_EHCACHE" />
+	<defaultCache 
+		maxElementsInMemory="1000" 
+		eternal="false"
+		timeToIdleSeconds="120" 
+		timeToLiveSeconds="120" 
+		overflowToDisk="true"
+		maxElementsOnDisk="100000" 
+		diskExpiryThreadIntervalSeconds="120" 
+		memoryStoreEvictionPolicy="LRU" />
+</ehcache>
+
+<!-- 	<diskStore path="/opt/cache" /> criar este diretorio para armazenar o cache no disco rigido-->
+<!-- 	<defaultCache  -->
+<!-- 		maxElementsInMemory="1000"  no maximo 1000 elementos na memoria-->
+<!-- 		eternal="false" irao ficar sempre na memoria?-->
+<!-- 		timeToIdleSeconds="120"  quanto tempo uma entidade por ficar sem ser utilizada-->
+<!-- 		timeToLiveSeconds="120"  quanto tempo de vida de cache -->
+<!-- 		overflowToDisk="true" quando atingirmos o maximo ele irá utilizar o disco rigido -->
+<!-- 		maxElementsOnDisk="100000" maximo de elentos no disco rigido -->
+<!-- 		diskExpiryThreadIntervalSeconds="120"   quanto tempo as entidade ficarao no disco -->
+<!-- 		memoryStoreEvictionPolicy="LRU" /> forma de retirar as entidades - LRU least recent used -->

@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<!-- Hibernate / JPA -->
-		<hibernate.version>4.3.11.Final</hibernate.version>
+		<hibernate.version>5.0.1.Final</hibernate.version>
 		
 		<!-- Driver MySQL -->
 		<mysql.connector.version>5.1.35</mysql.connector.version>
@@ -273,17 +273,31 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.0.1.Final</version>
+			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		
 		<!-- Hibernate Testing --> 
-  		<dependency> 
-  			<groupId>org.hibernate</groupId> 
-  			<artifactId>hibernate-testing</artifactId> 
-  			<version>4.3.5.Final</version> 
-  			<scope>compile</scope> 
-  		</dependency> 
+<!--   		<dependency>  -->
+<!--   			<groupId>org.hibernate</groupId>  -->
+<!--   			<artifactId>hibernate-testing</artifactId>  -->
+<!--   			<version>4.3.5.Final</version>  -->
+<!--   			<scope>compile</scope>  -->
+<!--   		</dependency>  -->
+
+		<!-- Ehcache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>2.6.9</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>compile</scope>
+		</dependency>
 		
 	</dependencies>
 

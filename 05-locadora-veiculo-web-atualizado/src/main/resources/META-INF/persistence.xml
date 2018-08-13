@@ -47,7 +47,10 @@
 			<property name="hibernate.default_schema" value="locadora" />
 			
 <!-- 			CACHE // NAO RECOMENDADO PARA PRODUçÂO -->
-			<property name="hibernate.cache.region.factory_class" value="org.hibernate.testing.cache.CachingRegionFactory"/>
+<!-- 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.testing.cache.CachingRegionFactory"/> -->
+			
+<!-- 			EHCACHE // RECOMENDADO PARA PRODUçÂO -->
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
 			
 <!-- 			cache de 2o nivel -->
 			<property name="hibernate.cache.use_second_level_cache" value="true"/>
