@@ -1,0 +1,27 @@
+PROJETO PRONTO PARA UTILIZACAO
+
+
+
+
+acessar pelo link
+http://localhost:8080/pedidos-venda/CadastroPedido.xhtml
+
+
+
+		<!-- Hibernate / JPA -->
+		<hibernate.version>5.0.1.Final</hibernate.version>
+		
+		<!-- Driver MySQL -->
+		<mysql.connector.version>5.1.35</mysql.connector.version>
+		
+		<!-- OmniFaces (utilitarios para JSF) -->
+			<version>1.8.1</version>
+			
+		<!-- Mojarra (Implementação JSF 2) -->
+			<version>2.2.7</version>
+		
+		<!-- PrimeFaces (Biblioteca de componentes) -->
+			<version>5.0</version>
+
+		<!-- Weld (implementação do CDI) -->
+			<version>2.2.1.Final</version>	
