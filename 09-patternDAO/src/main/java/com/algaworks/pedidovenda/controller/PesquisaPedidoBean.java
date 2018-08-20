@@ -8,7 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.pedidovenda.dao.PedidoDAO;
+import com.algaworks.pedidovenda.dao.implementacao.PedidoDAO;
 import com.algaworks.pedidovenda.model.Entrega;
 import com.algaworks.pedidovenda.model.Pedido;
 
@@ -33,7 +33,7 @@ public class PesquisaPedidoBean implements Serializable {
 	}
 
 	public void pesquisar() {
-		this.listaPedidos = pedidoDAO.filtrar(filtro);
+		this.listaPedidos = pedidoDAO.filtrar(filtro, "codigo", "referencia", "entrega");
 	}
 
 	public List<Pedido> getListaPedidos() {

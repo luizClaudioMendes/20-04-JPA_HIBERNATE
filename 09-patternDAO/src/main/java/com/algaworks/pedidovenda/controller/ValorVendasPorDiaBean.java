@@ -7,7 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.pedidovenda.dao.PedidoDAO;
+import com.algaworks.pedidovenda.dao.PedidoDAOImpl;
 import com.algaworks.pedidovenda.dao.vo.ValorTotalVendaDoDia;
 
 @ViewScoped
@@ -19,7 +19,7 @@ public class ValorVendasPorDiaBean implements Serializable {
 	private List<ValorTotalVendaDoDia> vendas;
 	
 	@Inject
-	private PedidoDAO pedidoDAO;
+	private PedidoDAOImpl pedidoDAO;
 	
 	public void buscarValorTotalVendaDoDia() {
 		this.vendas = pedidoDAO.buscarValorTotalVendaDoDia();

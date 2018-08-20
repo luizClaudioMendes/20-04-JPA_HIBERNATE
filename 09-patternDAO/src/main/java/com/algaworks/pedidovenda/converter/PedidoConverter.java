@@ -6,14 +6,14 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import com.algaworks.pedidovenda.dao.PedidoDAO;
+import com.algaworks.pedidovenda.dao.PedidoDAOImpl;
 import com.algaworks.pedidovenda.model.Pedido;
 
 @FacesConverter(forClass=Pedido.class)
 public class PedidoConverter implements Converter {
 
 	@Inject
-	private PedidoDAO pedidoDAO;
+	private PedidoDAOImpl pedidoDAO;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {

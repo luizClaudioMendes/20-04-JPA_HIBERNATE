@@ -98,6 +98,14 @@
 			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- commons beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+			<scope>compile</scope>
+		</dependency>
 
 	</dependencies>
 	

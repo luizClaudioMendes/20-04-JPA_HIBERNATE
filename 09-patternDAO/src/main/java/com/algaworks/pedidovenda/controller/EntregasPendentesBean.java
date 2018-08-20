@@ -7,7 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.pedidovenda.dao.ItemPedidoDAO;
+import com.algaworks.pedidovenda.dao.ItemPedidoDAOImpl;
 import com.algaworks.pedidovenda.model.ItemPedido;
 
 @ViewScoped
@@ -19,7 +19,7 @@ public class EntregasPendentesBean implements Serializable {
 	private List<ItemPedido> itensPendentes;
 
 	@Inject
-	private ItemPedidoDAO itemPedidoDAO;
+	private ItemPedidoDAOImpl itemPedidoDAO;
 
 	public void buscarItensPendentes() {
 		this.itensPendentes = itemPedidoDAO.buscarItensPendentes();

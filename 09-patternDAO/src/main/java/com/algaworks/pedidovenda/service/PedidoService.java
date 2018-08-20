@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import com.algaworks.pedidovenda.dao.PedidoDAO;
+import com.algaworks.pedidovenda.dao.PedidoDAOImpl;
 import com.algaworks.pedidovenda.model.ItemPedido;
 import com.algaworks.pedidovenda.model.Pedido;
 import com.algaworks.pedidovenda.util.jpa.Transactional;
@@ -16,7 +16,7 @@ public class PedidoService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PedidoDAO pedidoDAO;
+	private PedidoDAOImpl pedidoDAO;
 	
 	@Transactional
 	public void salvar(Pedido pedido) {
