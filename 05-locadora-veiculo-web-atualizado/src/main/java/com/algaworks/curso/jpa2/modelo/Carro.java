@@ -16,8 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -27,11 +25,11 @@ import javax.persistence.TemporalType;
 
 
 //select c from Carro c inner join fetch c.modelo order by c.codigo
+//@NamedQueries({//named queries
+//	@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo"),
+//	@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
+//			+ " where c.codigo = :codigo") })
 @Entity
-@NamedQueries({//named queries
-		@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modelo"),
-		@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c left JOIN fetch c.acessorios a "
-				+ " where c.codigo = :codigo") })
 @Table(name="tb_carro", schema="locadora")
 public class Carro {
 

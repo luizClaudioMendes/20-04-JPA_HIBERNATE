@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+  version="2.1">
+  
+<!--   ENTIDADE CARRO -->
+  <named-query name="Carro.buscarTodos">
+    <query>
+      	select c from Carro c 
+      	inner join fetch c.modelo
+    </query>
+  </named-query>
+  
+  <named-query name="Carro.buscarCarroComAcessorios">
+    <query>
+     	select c from Carro c 
+     	left JOIN fetch c.acessorios a 
+    </query>
+  </named-query>
+  
+<!--   OUTRAS ENTIDADES -->
+
+</entity-mappings>
