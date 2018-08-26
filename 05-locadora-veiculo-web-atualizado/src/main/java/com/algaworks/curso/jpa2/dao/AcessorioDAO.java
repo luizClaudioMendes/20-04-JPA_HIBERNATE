@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceException;
 
 import com.algaworks.curso.jpa2.modelo.Acessorio;
@@ -19,7 +20,18 @@ public class AcessorioDAO implements Serializable {
 	private EntityManager manager;
 	
 	public Acessorio buscarPeloCodigo(Long codigo) {
-		return manager.find(Acessorio.class, codigo);
+		return manager.find(Acessorio.class, codigo, LockModeType.PESSIMISTIC_WRITE); //lock pessimista
+		
+//		tipos de locks:
+//			Database name					Shared lock statement			Exclusive lock statement
+//			Oracle							FOR UPDATE						FOR UPDATE
+//			MySQL							LOCK IN SHARE MODE				FOR UPDATE
+//			Microsoft SQL Server			WITH (HOLDLOCK, ROWLOCK)		WITH (UPDLOCK, ROWLOCK)
+//			PostgreSQL						FOR SHARE						FOR UPDATE
+//			DB2								FOR READ ONLY WITH RS 			FOR UPDATE WITH RS
+
+//		The shared/read lock is acquired using the PESSIMISTIC_READ Lock Mode Type, and the exclusive/write lock is requested using PESSIMISTIC_WRITE instead.
+		
 	}
 	
 	public void salvar(Acessorio fabricante) {
