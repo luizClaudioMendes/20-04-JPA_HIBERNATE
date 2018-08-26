@@ -185,12 +185,13 @@
 		</dependency>
 		<!-- Driver JDBC do MySQL -->
 <!-- 		por causa do datasource ja definir o driver do mysql, pode-se retirar isto -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>mysql</groupId> -->
-<!-- 			<artifactId>mysql-connector-java</artifactId> -->
-<!-- 			<version>${mysql.connector.version}</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+<!-- UTILIZADO PELO TESTE DO JUNIT-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+			<scope>test</scope>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>
