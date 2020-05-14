@@ -1,74 +1,75 @@
-# CURSO DE JAX-WS-SOAP
-###### concluído em 04/02/2018
-###### markup em 07/04/2020
+# CURSO DE JPA 2 e Hibernate além do básico
+###### concluído em 28/08/2018
+###### markup em 15/05/2020
 
 ## WHAT I NEED?
-- Objetivo: **desenvolver um projeto Java para criar um serviço SOAP**. 
+- mySQL
+- tomcat
+- JSF 2
+- maven
+- primefaces
+- hibernate 5.x
+
 
 - necessário:
 
-    Java JDK 8 (pode ser JDK 7) 
-
-    Eclipse IDE for Java EE Developers. 
-
-    JBoss Wildfly 8.x 
-
-    SoapUI.
+   
     
     
 ## INTRODUÇÃO
 
+### 1.1  Introdução ao curso de JPA 2 e Hibernate
+### o que você vai aprender?
+- utilizar o mysql como banco de dados para trabalhar com persistência.
+- introdução a persistência
+- criar um projeto com método main para iniciar os passos com jpa e hibernate
+- criar um sistema de locadora de veiculo, com situações reais que ocorrem quando trabalhamos com jpa e hibernate.
+- tomcat, jsf2, maven, primefaces
+- geração das primary keys, mapeamentos de muitos para um um para muitos, etc, lazy e eager, chaves compostas, data, enumeração, herança. 
+- ver detalhes da transação, evoluir consultas utilizando JPQL, criteria, gravação em cascata.
+
+###1.2 O que é persistência?
+###### persistência é tudo aquilo que você consegue gravar e recuperar, mesmo passado muito tempo. 
 
 
+###1.3. Instalando o MySQL no windows
+- fazer o download do mysql
 
-1.1. Introdução ao curso de JPA 2 e Hibernate
-o que você vai aprender?
-utilizar o mysql como banco de dados para trabalhar com persistência.
-introdução a persistência
-criar um projeto com método main para iniciar os passos com jpa e hibernate
-criar um sistema de locadora de veiculo, com situações reais que ocorrem quando trabalhamos com jpa e hibernate.
-tomcat, jsf2, maven, primefaces
-geração das primary keys, mapeamentos de muitos para um um para muitos, etc, lazy e eager, chaves compostas, data, enumeração, herança. ver detalhes da transação, evoluir consultas utilizando JPQL, criteria, gravação em cascata.
+- para instalar o mysql, executar o setup do instalador.
 
-1.2. O que é persistência?
-persistência é tudo aquilo que você consegue gravar e recuperar. mesmo passado muito tempo. 
+- configuração normal.
 
-
-1.3. Instalando o MySQL
-fazer o download do mysql
- 
-para instalar o mysql, executar o setup do instalador.
-
-configuração normal.
-
-inicializar o mysql como serviço manualmente :
+- inicializar o mysql como serviço manualmente :
 painel de controle
 administrative tools
 services
 na lista, encontrar o mysql e clicar em start
 
 
-1.4. Exercício: Instalando o MySQL no Linux Ubuntu
+###1.4. Exercício: Instalando o MySQL no Linux Ubuntu
 A demonstração da instalação do MySQL abaixo foi realizada no Ubuntu 12.04 32-bit.
 
-Se você usa uma distribuição diferente, deixe seu comentário abaixo que tentaremos ajudar.
-1. Abra um terminal e execute o comando: sudo apt-get install mysql-server-5.5 mysql-workbench
-2. Digite y para as próximas confirmações e o início do download do repositório IMPORTANTE: Você precisa estar conectado a internet.
-3. Para iniciar o servidor, execute o comando: sudo service mysql start
-4. Para abrir o workbench você pode na linha de comando digitar: mysql-workbench ou utilizar o atalho criado.
+- Abra um terminal e execute o comando: **sudo apt-get install mysql-server-5.5 mysql-workbench**
+- Digite **y** para as próximas confirmações e o início do download do repositório 
+###### IMPORTANTE: Você precisa estar conectado a internet.
+- Para iniciar o servidor, execute o comando: **sudo service mysql start**
+- Para abrir o workbench você pode na linha de comando digitar: **mysql-workbench** ou utilizar o atalho criado.
 Você então irá ver a tela inicial do workbench 
-5. Clicando em "localhost" na caixa "Open Connection to Start Querying", você irá para a o workbench e poderá fazer todas as consultas.
+- Clicando em "**localhost**" na caixa "**Open Connection to Start Querying**", você irá para a o workbench e poderá fazer todas as consultas.
 
 
-1.5. Criando as primeiras tabelas no MySQL
+###1.5. Criando as primeiras tabelas no MySQL
 criar um schema:
-criar um novo schema usando o wizard do workbench.
+- criar um novo schema usando o wizard do workbench.
 
+```sql
 (CREATE SCHEMA ‘cadastro_cliente’;)
+```
 
 
-criar uma tabela:
+- criar uma tabela:
 
+```sql
 CREATE TABLE cliente (
 	codigo BIGINT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(100) NOT NULL,
@@ -77,59 +78,84 @@ CREATE TABLE cliente (
 	profissao VARCHAR(30),
 	PRIMARY KEY(codigo)
 );
+```
 
-inserir um cliente:
+- inserir um cliente:
 
+```sql
 insert into cliente (nome, idade, sexo, profissao) ]
-values ( “jose da sila”, 25, “M”, “Engenheiro”);
+values ( “jose da silva”, 25, “M”, “Engenheiro”);
+```
 
 
+```sql
 select * from cliente;
+```
 
+```sql
 insert into cliente (nome, idade, sexo, profissao) ]
 values ( “maria rita”, 22, “F”, “Medica”);
+```
 
+```sql
 select * from cliente;
+```
 
-1.6. Mapeamento Objeto Relacional (ORM)
+###1.6. Mapeamento Objeto Relacional (ORM)
 o JPA2/hibernate faz o mapeamento objeto relacional. eles são a ponte entre o banco e a aplicação.
 
-JPA2 é a especificação e o hibernate é a implementação.
+###### JPA2 é a especificação e o hibernate é a implementação.
 
 
-modelo relacional
-modelo OO
-tabela
-classe
-linha
-objeto
-coluna
-atributo
+modelo relacional <-> modelo OO
+tabela <-> classe
+linha <-> objeto
+coluna <-> atributo
 
 
-O JPA Java Persistence API (ou simplesmente JPA) é uma API padrão da linguagem Java que descreve uma interface comum para frameworks de persistência de dados. A JPA define um meio de mapeamento objeto-relacional para objetos Java simples e comuns (POJOs), denominados beans de entidade. Diversos frameworks de mapeamento objeto/relacional como o Hibernate implementam a JPA. Também gerencia o desenvolvimento de entidades do Modelo Relacional usando a plataforma nativa Java SE e Java EE.
+###### O JPA Java Persistence API (ou simplesmente JPA) é uma API padrão da linguagem Java que descreve uma interface comum para frameworks de persistência de dados. 
+
+A JPA define um meio de mapeamento objeto-relacional para objetos Java simples e comuns (POJOs), denominados beans de entidade. **Diversos frameworks de mapeamento objeto/relacional como o Hibernate implementam a JPA**. Também gerencia o desenvolvimento de entidades do Modelo Relacional usando a plataforma nativa Java SE e Java EE.
+
 Originou-se num projeto comum entre os desenvolvedores para se criar o padrão[1]. Fortemente baseado nas ideias trazidas pelo Hibernate, tanto que o líder da primeira versão dessa especificação é o criador do framework.
+
 Ou seja, é utilizado principalmente para conexão e acesso a banco de dados relacionais.
 
-O Hibernate é um framework para o mapeamento objeto-relacional escrito na linguagem Java, mas também é disponível em .Net com o nome NHibernate. Este framework facilita o mapeamento dos atributos entre uma base tradicional de dados relacionais e o modelo objeto de uma aplicação, mediante o uso de arquivos (XML) ou anotações Java (veja Annotation (java)).
+**O Hibernate é um framework para o mapeamento objeto-relacional** escrito na linguagem Java, mas também é disponível em .Net com o nome NHibernate. Este framework **facilita o mapeamento dos atributos entre uma base tradicional de dados relacionais e o modelo objeto de uma aplicação, mediante o uso de arquivos (XML) ou anotações Java** (veja Annotation (java)).
+
 Hibernate é um software livre de código aberto distribuído com a licença LGPL.
+
 O objetivo do Hibernate é diminuir a complexidade entre os programas Java, baseado no modelo orientado a objeto, que precisam trabalhar com um banco de dados do modelo relacional (presente na maioria dos SGBDs). Em especial, no desenvolvimento de consultas e atualizações dos dados.
+
 Sua principal característica é a transformação das classes em Java para tabelas de dados (e dos tipos de dados Java para os da SQL). O Hibernate gera as chamadas SQL e libera o desenvolvedor do trabalho manual da conversão dos dados resultante, mantendo o programa portável para quaisquer bancos de dados SQL, porém causando um pequeno aumento no tempo de execução.
+
 Nas questões relacionadas para o gerenciamento de transações e na tecnologia de acesso à base de dados são de responsabilidade de outros elementos na infraestrutura do programa. Apesar de existirem API no Hibernate para possuir operações de controle transacional, ele simplesmente delegará estas funções para a infraestrutura na qual foi instalada.
-No caso de aplicações construídas para serem executadas em servidores de aplicação, o gerenciamento das transações é realizado segundo o padrão JTA. Já nas aplicações standalone, o programa delega o tratamento transacional ao driver JDBC.
+
+No caso de aplicações construídas para serem executadas em **servidores de aplicação, o gerenciamento das transações é realizado segundo o padrão JTA**. Já nas aplicações **standalone**, o programa delega o tratamento transacional ao **driver JDBC**.
+
 Hibernate pode ser utilizado em aplicações Java standalone ou em aplicações Java EE, utilizando servlet ou sessões Enterprise Java Beans.
-Hibernate foi criado por desenvolvedores Java, espalhados ao redor do mundo, e liderado por Gavin King. Posteriormente, JBoss Inc (empresa comprada pela Red Hat) contratou os principais desenvolvedores do programa para fazer o seu suporte.
-A atual versão do Hibernate é a 5.x, que incorporou características como a nova arquitetura Interceptor/Callback, filtros definidos pelo usuário e anotações JDK 5.0 (Metadados do Java), que substitui os arquivos XML. Hibernate 3 também se aproxima das especificações EJB 3.0 e atua como a espinha dorsal das implementações EJB 3.0 em JBoss.
+
+Hibernate foi criado por desenvolvedores Java, espalhados ao redor do mundo, e liderado por Gavin King. 
+
+Posteriormente, JBoss Inc (empresa comprada pela Red Hat) contratou os principais desenvolvedores do programa para fazer o seu suporte.
+
+A atual versão do Hibernate é a 5.x, que incorporou características como a nova arquitetura Interceptor/Callback, filtros definidos pelo usuário e anotações JDK 5.0 (Metadados do Java), que substitui os arquivos XML. 
+
+Hibernate 3 também se aproxima das especificações EJB 3.0 e atua como a espinha dorsal das implementações EJB 3.0 em JBoss.
+
 A HQL (Hibernate Query Language) é um dialeto SQL para o Hibernate. Ela é uma poderosa linguagem de consulta que se parece muito com a SQL, mas a HQL é totalmente orientada a objeto, incluindo os paradigmas de herança, polimorfismo e encapsulamento.
+
 No Hibernate, você pode escolher tanto usar a SQL quanto a HQL. Escolhendo a HQL, você poderá executar os pedidos SQL sobre as classes de persistência do Java ao invés de tabelas no banco de dados.
+
 Utilizando o HQL temos a vantagem de portabilidade de banco, ou seja, suponha que estamos utilizando um banco de dados A, ao trocarmos para um banco B o HQL automaticamente cria comandos referentes a cada banco de dados. Isso facilita, pois no SQL teríamos que rastrear e alterar vários códigos no sistema.
 https://pt.wikipedia.org/wiki/Hibernate
 
 
-1.7. Relacionamento entre tabelas
+### 1.7. Relacionamento entre tabelas
 criar outra tabela chamada de conta corrente: 
 
 
+```sql
 CREATE TABLE conta_corrente (
 	codigo BIGINT NOT NULL AUTO_INCREMENT,
 	numero VARCHAR(12) NOT NULL,
@@ -138,35 +164,44 @@ CREATE TABLE conta_corrente (
 	PRIMARY KEY (codigo),
 	FOREIGN KEY (codigo_cliente) REFERENCES cliente (codigo)
 );
+```
 
 e depois vamos inserir um valor na conta:
 
+```sql
 insert into conta_corrente (numero, saldo, codigo_cliente) values (123456, 1000.00, 1);
+```
 
 
 o código do cliente relacionado deve existir na tabela cliente, se não ocorre erro:
+```sql
 insert into conta_corrente (numero, saldo, codigo_cliente) values (22222, 5000.00, 5);
+```
 
 o cliente 5 ainda não existe.
 
 agora vamos corrigir o insert para o cliente 2:
+```sql
 insert into conta_corrente (numero, saldo, codigo_cliente) values (22222, 5000.00, 2);
+```
 
 
 para exibir na mesma consulta o nome e o saldo, devemos executar o seguinte select:
 
+```sql
 select cli.nome, cc.saldo from cliente cli , conta_corrente cc where cli.codigo = cc.codigo_cliente
+```
 
 
-1.8. Instalando e configurando o Eclipse
-após instalar o java, configurar as variáveis de ambiente.
+###1.8. Instalando e configurando o Eclipse
+- após instalar o java, configurar as variáveis de ambiente.
 
-baixar o eclipse java EE developer
+- baixar o eclipse java EE developer
 
-descompactar o eclipse
+- descompactar o eclipse
 
 
-no eclipse, 
+- no eclipse, 
 window - preference
 
 encoding
@@ -181,28 +216,26 @@ css files
 encoding UTF-8
 
 html files
-		encoding UTF-8
+encoding UTF-8
 
 jsp files
-	encoding UTF-8
+encoding UTF-8
 
 xml files
-		enconding UTF-8
-
+enconding UTF-8
 
 spelling
 disable spelling
 
-
 validation
-	validation
-		suspend all validators
+validation
+suspend all validators
 
 
-1.9. Download e configuração do Hibernate
-baixar o hibernate para utilizar na parte inicial do curso, antes de usarmos o maven
+### 1.9. Download e configuração do Hibernate sem utoilizar Maven
+- baixar o hibernate para utilizar na parte inicial do curso, antes de usarmos o maven
 
-www.hibernate.org
+[www.hibernate.org][1]
 
 downloads
 
@@ -210,7 +243,7 @@ baixar a versão do hibernate ORM
 
 extrair o conteudo do zip em uma pasta para o hibernate local
 
-no eclipse
+- no eclipse, para adicionar o .jar no projeto, sem maven:
 window
 preference
 	java	
@@ -220,16 +253,15 @@ após adicionar a biblioteca, clicar em add new external jar
 selecionar a pasta do hibernate, lib, jpa
 selecionar a pasta required e adicionar todas
 
-		
 
-	1.10. Download e configuração do driver MySQL
-em mysql.com, em downloads
+###1.10. Download e configuração do driver MySQL
+- em mysql.com, em downloads
 
-na página da community edition, procurar por connector j e fazer o download em zip
+na página da community edition, procurar por **connector j** e fazer o download em zip
 
 descompactar o zip em uma pasta
 
-no eclipse,
+- no eclipse,
 window
 preferences
 	driver definitions
@@ -7310,3 +7342,5 @@ ejb3 annotations
 domain code java 
 apply
 na perspectiva java, as classes já estão la
+
+[1]: http://www.hibernate.org "hibernate home"
